@@ -1,10 +1,10 @@
 # Unews
 
-    Este projeto é um site desenvolvido como parte da conclusão do curso de Análise e Desenvolvimento de Sistemas (ADS). Seu principal objetivo é aprimorar a comunicação entre a faculdade e os alunos, proporcionando um meio eficiente e centralizado para compartilhar informações importantes.
+Este projeto é um site desenvolvido como parte da conclusão do curso de Análise e Desenvolvimento de Sistemas (ADS). Seu principal objetivo é aprimorar a comunicação entre a faculdade e os alunos, proporcionando um meio eficiente e centralizado para compartilhar informações importantes.
 
-    O site oferece à faculdade um canal único de comunicação com os alunos, eliminando a necessidade de utilizar várias plataformas e métodos dispersos. Por meio dessa plataforma, os alunos podem acessar anúncios, avisos, calendários acadêmicos e outros conteúdos relevantes de maneira conveniente.
+O site oferece à faculdade um canal único de comunicação com os alunos, eliminando a necessidade de utilizar várias plataformas e métodos dispersos. Por meio dessa plataforma, os alunos podem acessar anúncios, avisos, calendários acadêmicos e outros conteúdos relevantes de maneira conveniente.
 
-    Ao simplificar a comunicação, o projeto visa melhorar a experiência geral dos alunos, mantendo-os informados de maneira oportuna sobre eventos acadêmicos, mudanças no cronograma, prazos de entrega e outros detalhes.
+Ao simplificar a comunicação, o projeto visa melhorar a experiência geral dos alunos, mantendo-os informados de maneira oportuna sobre eventos acadêmicos, mudanças no cronograma, prazos de entrega e outros detalhes.
 
 ---
 
@@ -25,7 +25,7 @@ Funcionalidades Futuras (podem ou não ser implementadas)
 
 
 --- 
-Executando o backned:
+Executando o backend:
 -
     cd backend
 
