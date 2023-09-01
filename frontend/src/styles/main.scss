@@ -1,0 +1,18 @@
+@import './base/reset';
+@import './base/variables';
+
+//components
+@import './components/body';
+@import './components/card';
+@import './components/header';
+@import './components/footer';
+@import './components/modal';
+
+//pages
+
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
