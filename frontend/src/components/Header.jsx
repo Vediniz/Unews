@@ -6,7 +6,7 @@ export default function Header() {
             <div className="header">
                 <div className="brand">
                     <div className="logo">@</div>
-                    <div className="name">Fatec<span>News</span></div>
+                    <div className="name">U<span>news</span></div>
                 </div>
                 <div className="content-menu">
                     <div className="menu">
