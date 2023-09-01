@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Modal() {
-
+    // user define se o modal vai ser de login ou cadastro, onde true = login e false = cadastro.
     const [user, setUser] = useState(true);
 
     function handleUser() {

@@ -54,8 +54,8 @@
                 padding: .5rem 2rem;
                 border-radius: 20px;
                 border: none;
-                background-color: $green;
-                color: $alice-blue;
+                background-color: $tertiary;
+                color: $white;
 
                 &:hover {
                     cursor: pointer;
@@ -65,7 +65,7 @@
 
             p {
                 a {
-                    color: $green;
+                    color: $secondary;
                 }
             }
         }

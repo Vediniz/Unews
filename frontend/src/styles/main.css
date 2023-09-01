@@ -5,7 +5,7 @@
   margin: 0;
   font-size: 16px;
   font-family: system-ui, "Helvetica Neue", sans-serif;
-  color: #31493C;
+  color: #000;
 }
 
 body {
@@ -46,11 +46,11 @@ body {
   font-family: "Tulpen One";
   font-size: 3rem;
   font-weight: 700;
-  color: #001A23;
+  color: #423E3B;
 }
 .header .brand .name span {
   font: inherit;
-  color: #7A9E7E;
+  color: #FF2E00;
 }
 .header .content-menu {
   display: flex;
@@ -61,7 +61,7 @@ body {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  border: 1px solid #001A23;
+  border: 1px solid #423E3B;
   border-radius: 30px;
   padding: 0.5rem 1rem;
 }
@@ -69,7 +69,7 @@ body {
   cursor: pointer;
 }
 .header .content-menu .menu .menu-item:hover {
-  color: #F9C846;
+  color: #FEA82F;
 }
 .header .content-menu .menu #search {
   background-color: #FFF;
@@ -84,10 +84,10 @@ body {
 .header .content-menu .perfil {
   width: 3rem;
   height: 3rem;
-  border: 1px dotted #31493C;
+  border: 1px dotted #423E3B;
   border-radius: 50%;
   transition: box-shadow 0.3s ease;
-  background-color: #F9C846;
+  background-color: #FEA82F;
 }
 .header .content-menu .perfil:hover {
   cursor: pointer;
@@ -154,15 +154,15 @@ body {
   padding: 0.5rem 2rem;
   border-radius: 20px;
   border: none;
-  background-color: #7A9E7E;
-  color: #E8F1F2;
+  background-color: #FEA82F;
+  color: #FFF;
 }
 .modal .form .options button:hover {
   cursor: pointer;
   box-shadow: inset 0px 0px 0px 200px rgba(0, 0, 0, 0.3);
 }
 .modal .form .options p a {
-  color: #7A9E7E;
+  color: #FF2E00;
 }
 
 .app {

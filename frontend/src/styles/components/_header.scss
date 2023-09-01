@@ -25,10 +25,10 @@
             font-family: 'Tulpen One';
             font-size: 3rem;
             font-weight: 700;
-            color: $rich-black;
+            color: $primary;
             span {
                 font: inherit;
-                color: $green;
+                color: $secondary;
             }
         }
     }
@@ -42,7 +42,7 @@
             display: flex;
             align-items: baseline;
             gap: .5rem;
-            border: 1px solid $rich-black;
+            border: 1px solid $primary;
             border-radius: 30px;
             padding: .5rem 1rem;
     
@@ -50,7 +50,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    color: $yellow;
+                    color: $tertiary;
                 }
             }
     
@@ -71,10 +71,10 @@
         .perfil {
             width: 3rem;
             height: 3rem;
-            border: 1px dotted $dark-green;
+            border: 1px dotted $primary;
             border-radius: 50%;
             transition: box-shadow 0.3s ease;
-            background-color: $yellow;
+            background-color: $tertiary;
 
             &:hover {
                 cursor: pointer;
