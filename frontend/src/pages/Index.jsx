@@ -8,8 +8,8 @@ export default function Index() {
     return (
         <>
             <Header />
-            {/* <Body /> */}
-            <Modal />
+            <Body />
+            {/* <Modal /> */}
             <Footer />
         </>
     )

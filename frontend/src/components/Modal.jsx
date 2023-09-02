@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Modal() {
+export default function Modal({setDisplay}) {
     // user define se o modal vai ser de login ou cadastro, onde true = login e false = cadastro.
     const [user, setUser] = useState(true);
 
@@ -19,7 +19,7 @@ export default function Modal() {
     }
 
     return (
-        <div className="modal">
+        <div className="modal" style={{display: `${setDisplay}`}}>
             <form action="" className="form">
                 <h1 className="title">{user ? 'Login' : 'Cadastro'}</h1>
 
