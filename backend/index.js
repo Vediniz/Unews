@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from "dotenv"
 import connectedDB from "./database/db.js"
+import cors from 'cors'
 
 import userRoute from "./routes/user.route.js"
 import authRoute from "./routes/auth.route.js"
@@ -9,11 +10,14 @@ import swaggerRoute from "./routes/swagger.route.js"
 
 dotenv.config()
 
+
+
 const app = express()
 const port = process.env.PORT || 3000
 
 connectedDB()
 app.use(express.json())
+app.use(cors());
 app.use("/user", userRoute)
 app.use("/auth", authRoute)
 app.use("/news", newsRoute)
