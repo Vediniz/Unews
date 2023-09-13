@@ -1,4 +1,5 @@
 import React from "react";
+import { TextLimit } from "./TextLimit";
 
 export default function Card(props) {
     return (
@@ -8,7 +9,7 @@ export default function Card(props) {
                     <div className="card-title">{props.title}</div>
 
                     <div className="card-text">
-                        {props.text}
+                        <TextLimit text={props.text} limit={200} />
                     </div>
                 </div>
                 <img src={props.banner} alt="Imagem da noticia" />

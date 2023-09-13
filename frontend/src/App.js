@@ -1,12 +1,8 @@
 import React from 'react';
-import Index from './pages/Index';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="app">
-      <Index />
-    </div>
-  );
+  return <Outlet />
 }
 
 export default App;
