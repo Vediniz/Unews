@@ -22,6 +22,13 @@ app.use((req, res, next) => {
     cors()
     next();
 })
+
+// Para sair no console as requisições
+app.use((req, res, next) => {
+    console.log(`Received ${req.method} request at ${req.url}`);
+    next()
+})
+
 app.use("/user", userRoute)
 app.use("/auth", authRoute)
 app.use("/news", newsRoute)
