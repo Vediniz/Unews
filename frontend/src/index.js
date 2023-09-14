@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Perfil from './pages/Perfil';
+import Authentication from './pages/Authentication';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         element: <Perfil />
       }
     ]
+  },
+  {
+    path: '/auth',
+    element: <Authentication />,
   }
 ])
 

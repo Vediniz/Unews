@@ -108,18 +108,6 @@ body {
 .header .content-menu .menu #search:focus {
   outline: none;
 }
-.header .content-menu .perfil {
-  width: 3rem;
-  height: 3rem;
-  border: 1px dotted #423E3B;
-  border-radius: 50%;
-  transition: box-shadow 0.3s ease;
-  background-color: #FEA82F;
-}
-.header .content-menu .perfil:hover {
-  cursor: pointer;
-  box-shadow: inset 0px 0px 0px 200px rgba(0, 0, 0, 0.3);
-}
 
 .footer {
   display: flex;
@@ -129,66 +117,23 @@ body {
   margin-bottom: 0;
 }
 
-.modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
+.compInput {
+  padding: 0.7rem;
+  border-radius: 7px;
+  border: 1px solid #ccc;
 }
-.modal .form {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #000;
-  border-radius: 30px;
-  text-align: center;
-  padding: 2rem;
-  gap: 0.5rem;
-}
-.modal .form h1 {
-  font-size: 1.5rem;
-}
-.modal .form .inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.modal .form .inputs .input-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.modal .form .inputs .input-content input {
-  background-color: #FFF;
-  border: none;
-  border-radius: 30px;
-  padding: 0.25rem 0.8rem;
-  overflow: hidden;
-}
-.modal .form .inputs .input-content input:focus {
-  outline: none;
-}
-.modal .form .options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.modal .form .options button {
-  padding: 0.5rem 2rem;
+
+.button {
+  padding: 0.5rem;
   border-radius: 20px;
   border: none;
+  width: 6rem;
+  transition: box-shadow 0.3s ease;
   background-color: #FEA82F;
-  color: #FFF;
 }
-.modal .form .options button:hover {
+.button:hover {
   cursor: pointer;
   box-shadow: inset 0px 0px 0px 200px rgba(0, 0, 0, 0.3);
-}
-.modal .form .options p a {
-  color: #FF2E00;
 }
 
 .container-search {
@@ -215,4 +160,33 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
   width: 100%;
+}
+
+.container-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 70%;
+  margin: 0 auto;
+}
+.container-auth .cardSign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20rem;
+  padding: 2rem;
+  gap: 1rem;
+  border: 1px solid black;
+}
+.container-auth form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+.container-auth form button {
+  align-self: center;
 }/*# sourceMappingURL=main.css.map */

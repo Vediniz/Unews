@@ -1,0 +1,13 @@
+.button {
+    padding: .5rem;
+    border-radius: 20px;
+    border: none;
+    width: 6rem;
+    transition: box-shadow 0.3s ease;
+    background-color: $tertiary;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: inset 0px 0px 0px 200px rgba(0,0,0,0.3);
+    }
+}

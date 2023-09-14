@@ -67,18 +67,5 @@
     
         }
 
-        .perfil {
-            width: 3rem;
-            height: 3rem;
-            border: 1px dotted $primary;
-            border-radius: 50%;
-            transition: box-shadow 0.3s ease;
-            background-color: $tertiary;
-
-            &:hover {
-                cursor: pointer;
-                box-shadow: inset 0px 0px 0px 200px rgba(0,0,0,0.3);
-            }
-        }
     }
 }

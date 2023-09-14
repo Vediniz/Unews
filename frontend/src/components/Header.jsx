@@ -1,17 +1,8 @@
 import React from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-const searchSchema = z.object({
-    title: z
-    .string()
-    .nonempty({ message: "Campo obrigatório" })
-    .refine((value) => !/^\s*$/.test(value),{ 
-        message: "Campo obrigatório",
-    })
-})
+import { searchSchema } from "../schemas/searchSchema";
 
 export default function Header() {
     const {
@@ -48,7 +39,9 @@ export default function Header() {
                         <div className="menu-item">Sobre</div>
                         <div className="menu-item">Contato</div>
                     </div>
-                    <div className="perfil"></div>
+                    <Link to='/auth'>
+                        <button className="button">Entrar</button>
+                    </Link>
                 </div>
             </div>
             <Outlet />
