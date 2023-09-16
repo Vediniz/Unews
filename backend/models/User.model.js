@@ -6,11 +6,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
+    // username: {
+    //     type: String,
+    //     required: true,
+    //     unique: true
+    // },
     email: {
         type: String,
         required: true,
@@ -22,10 +22,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         select: false
     },
-    avatar: {
-        type: String,
-        required: true
-    }
+    // avatar: {
+    //     type: String,
+    //     required: true
+    // }
 });
 
 UserSchema.pre('save', async function (next){

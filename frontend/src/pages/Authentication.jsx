@@ -1,10 +1,15 @@
 import Input from "../components/Input"
+import Cookies from 'js-cookie'
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signupSchema } from "../schemas/signupSchema"
 import { signinSchema } from "../schemas/signinSchema"
+import { signup, signin } from "../services/userServices"
 
 export default function Authentication() {
+    const navigate = useNavigate()
+
     const {
         register: registerSignup,
         handleSubmit: handleSubmitSignup,
@@ -22,12 +27,24 @@ export default function Authentication() {
     });
     
 
-    function inHandleSubmit(data) {
-        console.log(data)
+    async function inHandleSubmit(data) {
+        try {
+            const response = await signin(data)
+            Cookies.set('token', response.data, { expires: 1 })
+            navigate('/')
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    function upHandleSubmit(data) {
-        console.log(data)
+    async function upHandleSubmit(data) {
+        try {
+            const response = await signup(data)
+            Cookies.set('token', response.data.token, { expires: 1 })
+            navigate('/')
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
