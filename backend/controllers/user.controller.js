@@ -1,4 +1,6 @@
 import userService from '../services/user.service.js';
+import jwt from 'jsonwebtoken';
+
 
 const create = async (req, res) => {
     try {
@@ -72,9 +74,32 @@ const handle_error = (res, err) => {
     res.status(500).json({ message: 'Something went wrong' });
 };
 
+const find_by_token = async (req, res, token) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.SECRET_JWT);
+    
+        if (!decoded || !decoded.id) {
+          throw new Error('Token inválido');
+        }
+    
+        const user = await userService.find_by_id_service(decoded.id);
+    
+        if (!user || !user.id) {
+          throw new Error('Usuário não encontrado');
+        }
+    
+        res.json(user);
+      } catch (error) {
+        res.status(401).json({ message: 'Token inválido: ' + error.message });
+      }
+    };
+  
+
 export default {
     create,
     find_all,
     find_by_id,
     update,
+    find_by_token,
 };
