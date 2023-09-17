@@ -26,7 +26,7 @@ const find_all = async (req, res) => {
         offset = Number(offset)
 
         if (!limit) {
-            limit = 2
+            limit = 5
         }
         if (!offset) {
             offset = 0
