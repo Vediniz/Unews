@@ -32,6 +32,7 @@ export default function Authentication() {
             const response = await signin(data)
             Cookies.set('token', response.data, { expires: 1 })
             navigate('/')
+            console.log(response.data);
         } catch (error) {
             console.log(error);
         }

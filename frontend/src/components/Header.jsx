@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../schemas/searchSchema";
+import { userLogged } from "../services/userServices";
+import Cookies from "js-cookie";
 
 export default function Header() {
     const {
@@ -21,6 +23,19 @@ export default function Header() {
         navigate(`/search/${title}`)
         reset()
     }
+
+    async function findUserLogged() {
+        try {
+            const response = await userLogged()
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        if (Cookies.get('token')) findUserLogged()
+    }, [])
 
     return (
         <div className="content-header">

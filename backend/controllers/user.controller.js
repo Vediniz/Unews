@@ -6,7 +6,7 @@ const create = async (req, res) => {
     try {
         const { name, username, email, password, avatar } = req.body;
 
-        if (!name || !username || !email || !password || !avatar ) {
+        if (!name || !username || !email || !password || !avatar) {
             return res.status(400).json({ message: 'Submit all fields for registration' });
         }
 
@@ -57,7 +57,7 @@ const update = async (req, res) => {
         const { name, username, email, password, avatar } = req.body;
         const { id, user } = req;
 
-        if (!name && !username && !email && !password && !avatar ) {
+        if (!name && !username && !email && !password && !avatar) {
             return res.status(400).json({ message: 'Submit at least one field for update' });
         }
 
@@ -78,23 +78,23 @@ const find_by_token = async (req, res, token) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decoded = jwt.verify(token, process.env.SECRET_JWT);
-    
+
         if (!decoded || !decoded.id) {
-          throw new Error('Token inválido');
+            throw new Error('Token inválido');
         }
-    
+
         const user = await userService.find_by_id_service(decoded.id);
-    
+
         if (!user || !user.id) {
-          throw new Error('Usuário não encontrado');
+            throw new Error('Usuário não encontrado');
         }
-    
+
         res.json(user);
-      } catch (error) {
+    } catch (error) {
         res.status(401).json({ message: 'Token inválido: ' + error.message });
-      }
-    };
-  
+    }
+};
+
 
 export default {
     create,
