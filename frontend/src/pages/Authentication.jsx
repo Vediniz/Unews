@@ -30,9 +30,8 @@ export default function Authentication() {
     async function inHandleSubmit(data) {
         try {
             const response = await signin(data)
-            Cookies.set('token', response.data, { expires: 1 })
+            Cookies.set('token', response.data.token, { expires: 1 })
             navigate('/')
-            console.log(response.data);
         } catch (error) {
             console.log(error);
         }

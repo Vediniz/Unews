@@ -19,7 +19,7 @@ export default function Body() {
         <div className="body">
             {news.map((post) => (
                 <Card 
-                    // key={post.id}
+                    key={post.id}
                     title={post.title}
                     text={post.text}
                     banner={post.banner}
