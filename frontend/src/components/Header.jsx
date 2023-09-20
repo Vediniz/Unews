@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +17,7 @@ export default function Header() {
     })
 
     const navigate = useNavigate()
+    const [user, setUser] = useState({})
 
     function onSearch(data) {
         const { title } = data
@@ -24,10 +25,16 @@ export default function Header() {
         reset()
     }
 
+    function signout() {
+        Cookies.remove('token')
+        setUser(undefined)
+        navigate('/')
+    }
+
     async function findUserLogged() {
         try {
             const response = await userLogged()
-            console.log(response);
+            setUser(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -54,9 +61,16 @@ export default function Header() {
                         <div className="menu-item">Sobre</div>
                         <div className="menu-item">Contato</div>
                     </div>
-                    <Link to='/auth'>
-                        <button className="button">Entrar</button>
-                    </Link>
+                    {user ? (
+                        <div className="logout">
+                            <h1>{user.name}</h1>
+                            <button className="button" onClick={signout}>Sair</button>
+                        </div>
+                    ):(
+                        <Link to='/auth'>
+                            <button className="button">Entrar</button>
+                        </Link>
+                    )}
                 </div>
             </div>
             <Outlet />
