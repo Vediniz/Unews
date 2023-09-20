@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../schemas/searchSchema";
 import { userLogged } from "../services/userServices";
 import Cookies from "js-cookie";
+import { UserContext } from "../context/UserContext";
 
 export default function Header() {
     const {
@@ -17,7 +18,7 @@ export default function Header() {
     })
 
     const navigate = useNavigate()
-    const [user, setUser] = useState({})
+    const {user, setUser} = useContext(UserContext)
 
     function onSearch(data) {
         const { title } = data
