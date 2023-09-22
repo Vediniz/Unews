@@ -20,7 +20,6 @@ export default function Body() {
 
 
     const openModal = (card) => {
-        console.log(card.title)
         setSelectedCard(card);
         setIsModalOpen(true);
     };
