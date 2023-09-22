@@ -7,9 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    margin: 0 auto;
+    width: 80%;
     height: 4rem;
-    padding: 1rem;
+    padding: 3rem 0;
     top: 0;
     background-color: $background;
 
@@ -36,6 +37,11 @@
         display: flex;
         align-items: center;
         gap: .5rem;
+
+        .logout {
+            display: flex;
+            gap: .8rem;
+        }
 
         .menu {
             display: flex;

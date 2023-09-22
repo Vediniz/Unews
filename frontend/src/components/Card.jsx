@@ -3,7 +3,7 @@ import { TextLimit } from "./TextLimit";
 
 export default function Card(props) {
     return (
-        <div className="card">
+        <div className="card" onClick={props.onClick}>
             <div className="card-body">
                 <div>
                     <div className="card-title">{props.title}</div>
