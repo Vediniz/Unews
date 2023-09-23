@@ -58,9 +58,12 @@ export default function Header() {
                         <form onSubmit={handleSubmit(onSearch)}>
                             <input {...register("title")} type="text" id="search" placeholder={errors.title ? errors.title.message : 'Pesquisar...'} />
                         </form>
-                        <Link to='/' className="menu-item" style={{ textDecoration: 'none' }}>Home</Link>
-                        <div className="menu-item">Sobre</div>
-                        <div className="menu-item">Contato</div>
+                        {user && (
+                            <>
+                                <Link to='/perfil' className="menu-item" style={{ textDecoration: 'none' }}>Perfil</Link>
+                                <div className="menu-item">Adicionar</div>
+                            </>
+                        )}
                     </div>
                     {user ? (
                         <div className="logout">
