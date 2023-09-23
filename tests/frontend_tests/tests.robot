@@ -9,3 +9,6 @@ Resource    ../resources/resources.robot
 Check home page
     Open Site Domain   ${local_host}     ${browser}
     Wait Until Page Contains    Unews
+
+Check News
+    Check News
