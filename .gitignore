@@ -1,3 +1,11 @@
+## python 
+.venv
+results/
+log*
+report.html
+output.xml
+
+
 # Logs
 logs
 *.log
