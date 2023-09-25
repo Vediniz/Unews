@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Card(props) {
-    const { user, logout } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
     function handleEdit() {

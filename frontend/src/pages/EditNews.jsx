@@ -64,7 +64,7 @@ export default function EditNews() {
                     {errors.image && <p className="error">{errors.image.message}</p>}
 
                     <span>Conteudo</span>
-                    <textarea cols="50" rows="10" {...register("text")}></textarea>
+                    <textarea cols="50" rows="10" {...register("text")} />
                     {errors.text && <p className="error">{errors.text.message}</p>}
 
                     <button type="submit" className="button">Salvar</button>

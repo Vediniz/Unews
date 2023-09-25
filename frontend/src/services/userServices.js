@@ -21,3 +21,12 @@ export function userLogged() {
     });
     return response;
 } 
+
+export function updateUser(id, data){
+    const response = axios.patch(`${baseUrl}/user/${id}`, data, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+        }
+    });
+    return response;
+}
