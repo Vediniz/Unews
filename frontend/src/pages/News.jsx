@@ -9,13 +9,11 @@ export default function News() {
         register: registerNews,
         handleSubmit: handleSubmitNews,
         formState: { errors: errorsNews },
-        watch,
     } = useForm({
         resolver: zodResolver(newsSchema),
     });
 
     async function handleCreatePost(data) {
-        // console.log(data);
         try {
             const response = await createPost(data)
             console.log(response);
@@ -28,7 +26,7 @@ export default function News() {
     return (
         <div className="create-news">
             <form onSubmit={handleSubmitNews(handleCreatePost)}>
-                {/* {console.log('carrego a pagina')} */}
+                {console.log('carrego a pagina')}
 
                 <span>Titulo</span>
                 <Input type='text' placeholder='Titulo' name='title' register={registerNews} />
