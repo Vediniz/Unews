@@ -32,6 +32,16 @@ export default function Header() {
         navigate('/')
     }
 
+    
+    const token = Cookies.get('token');
+    useEffect(() => {
+        if (token) {
+            findUserLogged();
+        }else{
+            setUser(undefined)
+        }
+    }, [token]);
+    
     async function findUserLogged() {
         try {
             const response = await userLogged()
@@ -41,12 +51,9 @@ export default function Header() {
         }
     }
 
-    useEffect(() => {
-        if (Cookies.get('token')) findUserLogged()
-    }, [])
-
     return (
         <div className="content-header">
+            {user ? console.log(true) : console.log(false)}
             <div className="header">
                 <Link to='/' style={{ textDecoration: 'none' }}>
                     <div className="brand">
