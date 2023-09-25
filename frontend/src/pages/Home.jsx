@@ -36,7 +36,7 @@ export default function Body() {
                     key={post.id}
                     title={post.title}
                     text={post.text}
-                    banner={post.banner}
+                    banner={post.image}
                     onClick={() => openModal(post)}
                 />
             ))}
@@ -45,7 +45,7 @@ export default function Body() {
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 title={selectedCard ? selectedCard.title : ''}
-                banner={selectedCard ? selectedCard.banner : ''}
+                banner={selectedCard ? selectedCard.image : ''}
                 text={selectedCard ? selectedCard.text : ''}
             />
         </div>
