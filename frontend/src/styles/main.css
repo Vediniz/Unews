@@ -40,6 +40,10 @@ body {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
+.card .card-body .card-title:hover {
+  cursor: pointer;
+  color: #FEA82F;
+}
 .card .card-body .card-text {
   font-size: 0.8rem;
 }

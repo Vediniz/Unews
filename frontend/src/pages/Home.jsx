@@ -34,6 +34,7 @@ export default function Body() {
             {news.map((post) => (
                 <Card
                     key={post.id}
+                    id={post.id}
                     title={post.title}
                     text={post.text}
                     banner={post.image}

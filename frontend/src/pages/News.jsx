@@ -16,7 +16,7 @@ export default function News() {
 
     async function handleCreatePost(data) {
         try {
-            const response = await createPost(data)
+            await createPost(data)
             reset()
         } catch (error) {
             console.log(error);
@@ -38,8 +38,7 @@ export default function News() {
                     {errors.image && <p className="error">{errors.image.message}</p>}
 
                 <span>Conteudo</span>
-                {/* <Input type='text' placeholder='Conteudo' name='text' register={register} />   */}
-                <textarea cols="30" rows="10" {...register("text")}></textarea>             
+                <textarea cols="50" rows="10" {...register("text")}></textarea>             
                     {errors.text && <p className="error">{errors.text.message}</p>}
 
                 <button type="submit" className="button">Salvar</button>

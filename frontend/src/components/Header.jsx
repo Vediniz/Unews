@@ -53,7 +53,6 @@ export default function Header() {
 
     return (
         <div className="content-header">
-            {user ? console.log(true) : console.log(false)}
             <div className="header">
                 <Link to='/' style={{ textDecoration: 'none' }}>
                     <div className="brand">

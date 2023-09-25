@@ -8,7 +8,7 @@ const get_news_count_service = () => News.countDocuments()
 
 const top_news_service = () => News.findOne().sort({_id: -1}).populate("user")
 
-const find_by_id_service = (id) => News.find_by_id(id).populate("user")
+const find_by_id_service = (id) => News.findById(id).populate("user")
 
 const search_title_service = (title) => News.find({
     title: {$regex: `${title || ""}`, $options: "i"},

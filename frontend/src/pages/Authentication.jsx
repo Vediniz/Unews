@@ -49,7 +49,6 @@ export default function Authentication() {
 
     return (
         <div className="container-auth">
-            {console.log('carrego a pagina')}
             <div className="signin cardSign">
                 <h1>Entrar</h1>
                 <form onSubmit={handleSubmitSignin(inHandleSubmit)}>
