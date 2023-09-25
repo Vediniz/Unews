@@ -28,7 +28,7 @@ export default function Search() {
                 <div className="search-news">
                     {news.map((post) => (
                         <Card
-                            // key={post.id}
+                            key={post.id}
                             title={post.title}
                             text={post.text}
                             banner={post.banner}

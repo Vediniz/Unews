@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import Perfil from './pages/Perfil';
 import Authentication from './pages/Authentication';
+import News from './pages/News';
 import { UserProvider } from './context/UserContext';
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: '/search/:title',
         element: <Search />
       },
+      {
+        path: '/news',
+        element: <News />
+      },
     ]
   },
   {
@@ -30,7 +35,7 @@ const router = createBrowserRouter([
     element: <Authentication />,
   },
   {
-    path: '/perfil/',
+    path: '/perfil',
     element: <Perfil />
   }
 ])

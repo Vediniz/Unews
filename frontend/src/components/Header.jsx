@@ -61,7 +61,7 @@ export default function Header() {
                         {user && (
                             <>
                                 <Link to='/perfil' className="menu-item" style={{ textDecoration: 'none' }}>Perfil</Link>
-                                <div className="menu-item">Adicionar</div>
+                                <Link to='/news' className="menu-item" style={{ textDecoration: 'none' }}>Adicionar</Link>
                             </>
                         )}
                     </div>
