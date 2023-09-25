@@ -6,9 +6,10 @@ import Input from "../components/Input"
 
 export default function News() {
     const {
-        register: registerNews,
-        handleSubmit: handleSubmitNews,
-        formState: { errors: errorsNews },
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors},
     } = useForm({
         resolver: zodResolver(newsSchema),
     });
@@ -16,7 +17,7 @@ export default function News() {
     async function handleCreatePost(data) {
         try {
             const response = await createPost(data)
-            console.log(response);
+            reset()
         } catch (error) {
             console.log(error);
         }
@@ -25,20 +26,21 @@ export default function News() {
 
     return (
         <div className="create-news">
-            <form onSubmit={handleSubmitNews(handleCreatePost)}>
+            <form onSubmit={handleSubmit(handleCreatePost)}>
                 {console.log('carrego a pagina')}
 
                 <span>Titulo</span>
-                <Input type='text' placeholder='Titulo' name='title' register={registerNews} />
-                    {errorsNews.title && <p className="error">{errorsNews.title.message}</p>}
+                <Input type='text' placeholder='Titulo' name='title' register={register} />
+                    {errors.title && <p className="error">{errors.title.message}</p>}
 
                 <span>Imagem</span>
-                <Input type='text' placeholder='Imagem' name='image' register={registerNews} />
+                <Input type='text' placeholder='Imagem' name='image' register={register} />
+                    {errors.image && <p className="error">{errors.image.message}</p>}
 
                 <span>Conteudo</span>
-                {/* <Input type='text' placeholder='Conteudo' name='text' register={registerNews} />   */}
-                <textarea cols="30" rows="10" {...registerNews("text")}></textarea>             
-                {errorsNews.text && <p className="error">{errorsNews.text.message}</p>}
+                {/* <Input type='text' placeholder='Conteudo' name='text' register={register} />   */}
+                <textarea cols="30" rows="10" {...register("text")}></textarea>             
+                    {errors.text && <p className="error">{errors.text.message}</p>}
 
                 <button type="submit" className="button">Salvar</button>
             </form>

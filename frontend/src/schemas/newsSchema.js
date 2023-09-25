@@ -6,6 +6,9 @@ export const newsSchema = z.object({
     .nonempty({ message: "Campo obrigatório" }),
     text: z
     .string()
-    .nonempty({ message: "Campo obrigatório" })
+    .nonempty({ message: "Campo obrigatório" }),
+    image: z
+    .string()
+    .nonempty({ message: "Campo obrigatório" }),
 })
     
