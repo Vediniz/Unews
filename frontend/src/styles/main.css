@@ -163,6 +163,14 @@ body {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+.modal-overlay .content-newsModal .content-newsImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-overlay .content-newsModal .content-newsImg img {
+  width: 50%;
+}
 .modal-overlay .content-newsModal header {
   display: flex;
   justify-content: space-between;
