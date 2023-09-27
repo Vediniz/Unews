@@ -1,23 +1,28 @@
-import { create_service, find_all_service, get_news_count_service, top_news_service, find_by_id_service, search_title_service, update_service, erase_service} from '../services/news.service.js'
+import { create_service, find_all_service, get_news_count_service, top_news_service, find_by_id_service, search_title_service, update_service, erase_service, filter_news_service} from '../services/news.service.js'
 
 const create = async (req, res) => {
     try {
-        const { title, text, image } = req.body
+        const { title, text, image, filters } = req.body; // Certifique-se de incluir "filters" no corpo da solicitação
 
         if (!title || !text || !image) {
-            res.status(400).json({ message: "Submit all fields for registration" })
+            res.status(400).json({ message: "Submit all fields for registration" });
+            return; 
         }
-        await create_service(
-            {
-                title,
-                text,
-                image,
-                user: req.userId,
-            }
-        )
-        res.status(201).json({message: "Created"})
-    } catch (err) { res.status(500).json({ message: err.message }) }
-}
+
+        const news = await create_service({
+            title,
+            text,
+            image,
+            user: req.userId,
+            filters: Array.isArray(filters) ? filters : [filters], 
+        });
+
+        res.status(201).json({ message: "Created", news });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 
 const find_all = async (req, res) => {
     try {
@@ -57,8 +62,6 @@ const find_all = async (req, res) => {
                 title: newsItem.title,
                 text: newsItem.text,
                 image: newsItem.image,
-                likes: newsItem.likes,
-                comments: newsItem.comments,
                 name: newsItem.user.name,
                 username: newsItem.user.username,
                 userAvatar: newsItem.user.avatar,
@@ -80,8 +83,6 @@ const latest_news = async (req, res) => {
                 title: news.title,
                 text: news.text,
                 image: news.image,
-                likes: news.likes,
-                comments: news.comments,
                 name: news.user.name,
                 username: news.user.username,
                 userAvatar: news.user.avatar,
@@ -101,8 +102,6 @@ const find_by_id = async (req, res) => {
                 title: news.title,
                 text: news.text,
                 image: news.image,
-                likes: news.likes,
-                comments: news.comments,
                 name: news.user.name,
                 username: news.user.username,
                 userAvatar: news.user.avatar,
@@ -126,8 +125,6 @@ const search_news_title = async (req, res) => {
                 title: newsItem.title,
                 text: newsItem.text,
                 image: newsItem.image,
-                likes: newsItem.likes,
-                comments: newsItem.comments,
                 name: newsItem.user.name,
                 username: newsItem.user.username,
                 userAvatar: newsItem.user.avatar,
@@ -139,29 +136,31 @@ const search_news_title = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { title, text, image } = req.body
-        const { id } = req.params
+        const { title, text, image, filters } = req.body
+        const { id } = req.params;
 
-        if (!title && !text && !image) {
-            res.status(400).json({ message: "Submit at least one field  to update the post" })
+        if (!title && !text && !image && !filters) {
+            res.status(400).json({ message: "Submit at least one field to update the post" })
+            return;
         }
 
         const news = await find_by_id_service(id)
 
-        const reqUserIdString = req.userId.toString();
+        const reqUserIdString = req.userId.toString()
 
         if (String(news.user._id) !== reqUserIdString) {
             console.log("Condition is true");
-            return res.status(400).json({ message: "You didnt update this post" });
+            return res.status(400).json({ message: "You didn't update this post" })
         }
 
+        await update_service(id, title, text, image, filters)
 
-        await update_service(id, title, text, image)
         return res.json({ message: "Post successfully updated" })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+};
 
-    } catch (err) { res.status(500).json({ message: err.message }) }
-
-}
 
 
 const erase = async (req, res) => {
@@ -187,6 +186,24 @@ const erase = async (req, res) => {
 }
 
 
+const find_by_filter = async (req, res) => {
+    try {
+        const { filters } = req.query;
+
+        if (!filters || typeof filters !== 'string') {
+            return res.status(400).json({ message: "Invalid filters provided" });
+        }
+
+        const filtersArray = filters.split(',');
+
+        const news = await filter_news_service(filtersArray);
+
+        res.json(news);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: err.message });
+    }
+};
 
 export {
     create,
@@ -196,4 +213,5 @@ export {
     search_news_title,
     update,
     erase,
+    find_by_filter,
 }
