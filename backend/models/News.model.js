@@ -21,7 +21,13 @@ const NewsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
-    }
+    },
+    filters: [
+        {
+            type: String,
+            enum: ["Alunos","Analise e Desenvolvimento de Sistemas", "Segurança da Informação", "Design de Moda", "Moda e Textil", "Logistica", "Gestão de Eemppresas", "Jogos Digitais", "TI", "Modas", "IMPORTANTES"],
+        },
+    ],
 })
 
 

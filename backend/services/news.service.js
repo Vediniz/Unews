@@ -20,4 +20,6 @@ const update_service = (id, title, text, image) => News.findOneAndUpdate({_id: i
 const erase_service = (id) => News.findOneAndDelete({_id: id})
 
 
-export  {create_service, find_all_service, get_news_count_service, top_news_service, find_by_id_service, search_title_service, update_service, erase_service}
+const filter_news_service = (filters) => News.find({ filters: { $in: filters } })
+
+export  {create_service, find_all_service, get_news_count_service, top_news_service, find_by_id_service, search_title_service, update_service, erase_service, filter_news_service}

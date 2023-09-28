@@ -1,4 +1,5 @@
 import userService from '../services/user.service.js';
+import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 
 
@@ -61,7 +62,12 @@ const update = async (req, res) => {
             return res.status(400).json({ message: 'Submit at least one field for update' });
         }
 
-        await userService.update_service(id, name, username, email, password, avatar);
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            await userService.update_service(id, name, username, email, hashedPassword, avatar);
+        } else {
+            await userService.update_service(id, name, username, email, password, avatar);
+        }
 
         res.json({ message: 'User successfully updated' });
     } catch (err) {
