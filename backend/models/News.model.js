@@ -5,10 +5,10 @@ const NewsSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    text:{
-        type: String,
-        require: true,
-    },
+    text: {
+        type: [String],
+        required: true,
+      },
     image:{
         type:String,
         require: true,

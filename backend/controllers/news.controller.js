@@ -2,16 +2,17 @@ import { create_service, find_all_service, get_news_count_service, top_news_serv
 
 const create = async (req, res) => {
     try {
-        const { title, text, image, filters } = req.body; // Certifique-se de incluir "filters" no corpo da solicitação
+        const { title, text, image, filters } = req.body;
 
         if (!title || !text || !image) {
             res.status(400).json({ message: "Submit all fields for registration" });
             return; 
         }
+        const paragraphs = text.split('\n');        
 
         const news = await create_service({
             title,
-            text,
+            text: paragraphs,
             image,
             user: req.userId,
             filters: Array.isArray(filters) ? filters : [filters], 
@@ -136,28 +137,36 @@ const search_news_title = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { title, text, image, filters } = req.body
+        const { title, text, image, filters } = req.body;
         const { id } = req.params;
 
         if (!title && !text && !image && !filters) {
-            res.status(400).json({ message: "Submit at least one field to update the post" })
+            res.status(400).json({ message: "Submit at least one field to update the post" });
             return;
         }
 
-        const news = await find_by_id_service(id)
+        const news = await find_by_id_service(id);
 
-        const reqUserIdString = req.userId.toString()
+        const reqUserIdString = req.userId.toString();
 
         if (String(news.user._id) !== reqUserIdString) {
             console.log("Condition is true");
-            return res.status(400).json({ message: "You didn't update this post" })
+            return res.status(400).json({ message: "You didn't update this post" });
         }
 
-        await update_service(id, title, text, image, filters)
+        const currentText = news.text || [];
 
-        return res.json({ message: "Post successfully updated" })
+        let updatedText = currentText;
+        if (text) {
+            const paragraphs = text.split('\n');
+            updatedText = [...paragraphs];
+        }
+
+        await update_service(id, title, updatedText, image, filters);
+
+        return res.json({ message: "Post successfully updated" });
     } catch (err) {
-        res.status(500).json({ message: err.message })
+        res.status(500).json({ message: err.message });
     }
 };
 
