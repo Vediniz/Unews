@@ -10,44 +10,90 @@
 
 body {
   background-color: #E8F1F2;
+  width: 100%;
 }
 
-.body {
+.home {
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+}
+@media (max-width: 999px) {
+  .home {
+    width: 60%;
+  }
+}
+@media (max-width: 670px) {
+  .home {
+    width: 90%;
+  }
+}
+.home h1 {
+  padding: 0 0 2rem 0;
+  font-size: 1.7rem;
+}
+.home .body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
-  margin: 0 auto;
-  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 999px) {
+  .home .body {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .card {
   display: flex;
   width: 100%;
-  gap: 1rem;
-  padding: 1rem;
-  border-radius: 0.3rem;
+  height: 164px;
   box-shadow: 0px 2px 5px 0px rgba(50, 50, 105, 0.149), 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  border-radius: 20px;
 }
 .card .card-body {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  gap: 1rem;
+  flex-direction: column;
+  flex: 1;
+  padding: 0.7rem;
+  position: relative;
+  height: 100%;
 }
 .card .card-body .card-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  height: 33.3%;
 }
-.card .card-body .card-title:hover {
-  cursor: pointer;
-  color: #FEA82F;
+@media (max-width: 500px) {
+  .card .card-body .card-title {
+    font-size: 1rem;
+  }
 }
 .card .card-body .card-text {
   font-size: 0.8rem;
+  height: 50.3%;
+  margin-top: 1rem;
 }
-.card .card-body img {
+.card .card-body .card-footer {
+  display: flex;
+  justify-content: space-between;
+  height: 13%;
+  width: 100%;
+}
+.card .card-body .card-footer span:hover {
+  cursor: pointer;
+  color: #FEA82F;
+}
+.card .card-body .card-footer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 1.5rem;
+}
+.card img {
   width: 30%;
   -o-object-fit: cover;
      object-fit: cover;

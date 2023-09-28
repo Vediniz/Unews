@@ -30,17 +30,20 @@ export default function Body() {
     };
 
     return (
-        <div className="body">
-            {news.map((post) => (
-                <Card
-                    key={post.id}
-                    id={post.id}
-                    title={post.title}
-                    text={post.text}
-                    banner={post.image}
-                    onClick={() => openModal(post)}
-                />
-            ))}
+        <div className="home">
+            <h1>Notícias</h1>
+            <div className="body">
+                {news.map((post) => (
+                    <Card
+                        key={post.id}
+                        id={post.id}
+                        title={post.title}
+                        text={post.text}
+                        banner={post.image}
+                        onClick={() => openModal(post)}
+                    />
+                ))}
+            </div>
 
             <NewsModal
                 isOpen={isModalOpen}

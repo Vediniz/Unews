@@ -1,9 +1,32 @@
 @import '../base/variables';
 
-.body {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
+.home {
+    text-align: center;
     margin: 0 auto;
     width: 80%;
+
+    @media (max-width: 999px) {
+        width: 60%;
+    }
+    @media (max-width: 670px) {
+        width: 90%;
+    }
+
+    h1 {
+        padding: 0 0 2rem 0;
+        font-size: 1.7rem;
+    }
+
+    .body {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+
+        @media (max-width: 999px) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }

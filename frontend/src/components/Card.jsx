@@ -14,20 +14,24 @@ export default function Card(props) {
 
     return (
         <div className="card">
+            <img src={props.banner} alt="Imagem da noticia" />
             <div className="card-body">
-                {user && (
-                    <button className="btn-edit" onClick={handleEdit}>
-                        Editar
-                    </button>
-                )}
-                <div>
-                    <div className="card-title" onClick={props.onClick}>{props.title}</div>
+                <div className="card-title">{props.title}</div>
 
-                    <div className="card-text">
-                        <TextLimit text={props.text} limit={200} />
-                    </div>
+                <div className="card-text">
+                    <TextLimit text={props.text} limit={100} />
                 </div>
-                <img src={props.banner} alt="Imagem da noticia" />
+                <div className="card-footer">
+                    <span onClick={props.onClick}>Ler mais...</span>
+                    {!user && (
+                        <span className="arrow" onClick={props.onClick}>&rarr;</span>
+                    )}
+                    {user && (
+                        <button className="button" onClick={handleEdit}>
+                            Editar
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     )
