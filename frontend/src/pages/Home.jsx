@@ -38,7 +38,7 @@ export default function Body() {
                         key={post.id}
                         id={post.id}
                         title={post.title}
-                        text={post.text}
+                        text={post.text.join(' ')}
                         banner={post.image}
                         onClick={() => openModal(post)}
                     />
