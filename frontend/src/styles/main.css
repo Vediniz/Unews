@@ -140,6 +140,9 @@ body {
   display: flex;
   gap: 0.8rem;
 }
+.header .content-menu .logout h1 {
+  align-self: center;
+}
 .header .content-menu .menu {
   display: flex;
   align-items: baseline;
@@ -270,31 +273,34 @@ body {
 
 .container-auth {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
 }
 .container-auth .cardSign {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 20rem;
+  width: 35%;
   padding: 2rem;
   gap: 1rem;
-  border: 1px solid black;
+}
+.container-auth .cardSign h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 .container-auth form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 2rem;
   width: 100%;
+}
+.container-auth form > * {
+  font-size: 1.2rem;
 }
 .container-auth form button {
   align-self: center;
+  width: 100%;
 }
 
 #perfil {
@@ -302,8 +308,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: auto;
 }
 #perfil .button-back {
   position: fixed;
@@ -342,14 +346,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   width: 50%;
   gap: 0.7rem;
-}
-#perfil form section {
-  display: flex;
-  gap: 1rem;
-  width: 100%;
 }
 #perfil .buttons {
   display: flex;
@@ -366,4 +364,34 @@ body {
 .create-news form > label {
   display: flex;
   flex-direction: column;
+}
+
+.create-news {
+  width: 100%;
+}
+.create-news form {
+  width: 100%;
+}
+.create-news form button {
+  margin: 1.5rem 0;
+}
+.create-news form input {
+  width: 30%;
+  margin-bottom: 1.5rem;
+}
+.create-news form textarea {
+  width: 30%;
+}
+.create-news form div {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  text-align: center;
+}
+.create-news form div span {
+  background-color: transparent;
+  border: 2px solid red;
+  color: red;
+  font-weight: 600;
+  margin: 1.5rem 0;
 }/*# sourceMappingURL=main.css.map */

@@ -27,17 +27,16 @@ export default function News() {
     return (
         <div className="create-news">
             <form onSubmit={handleSubmit(handleCreatePost)}>
-                {console.log('carrego a pagina')}
 
-                <span>Titulo</span>
+                <h2>Titulo</h2>
                 <Input type='text' placeholder='Titulo' name='title' register={register} />
                     {errors.title && <p className="error">{errors.title.message}</p>}
 
-                <span>Imagem</span>
+                <h2>Imagem</h2>
                 <Input type='text' placeholder='Imagem' name='image' register={register} />
                     {errors.image && <p className="error">{errors.image.message}</p>}
 
-                <span>Conteudo</span>
+                <h2>Conteudo</h2>
                 <textarea cols="50" rows="10" {...register("text")}></textarea>             
                     {errors.text && <p className="error">{errors.text.message}</p>}
 

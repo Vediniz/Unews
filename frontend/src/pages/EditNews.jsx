@@ -1,9 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { deletePost, getPostById, updatePost } from "../services/postServices"
 import { useEffect, useState } from "react"
-import { newsSchema } from '../schemas/newsSchema';
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import Input from "../components/Input"
 
 export default function EditNews() {
@@ -13,15 +11,17 @@ export default function EditNews() {
     const {
         register,
         handleSubmit,
-        formState: { errors},
-    } = useForm({
-        resolver: zodResolver(newsSchema),
-    });
+        setValue
+    } = useForm({ defaultValues: news });
 
     async function findById() {
         try {
             const response = await getPostById(id)
             setNews(response.data.news)
+
+            setValue("title", response.data.news.title);
+            setValue("image", response.data.news.image);
+            setValue("text", response.data.news.text.join('\n'));
         } catch (error) {
             console.log(error);
             setNews(undefined)
@@ -30,11 +30,12 @@ export default function EditNews() {
 
     useEffect(() => {
         findById()
-    }, [id])
+    }, [id, setValue])
 
     async function handleChangePost(data) {
         try {
             await updatePost(id, data)
+            navigate('/')
         } catch (error) {
             console.log(error);
         }
@@ -53,22 +54,20 @@ export default function EditNews() {
         <div>
             <div className="create-news">
                 <form onSubmit={handleSubmit(handleChangePost)}>
-                    {console.log('carrego a pagina')}
 
-                    <span>Titulo</span>
+                    <h2>Titulo</h2>
                     <Input type='text' placeholder='Titulo' name='title' register={register} />
-                    {errors.title && <p className="error">{errors.title.message}</p>}
 
-                    <span>Imagem</span>
+                    <h2>Imagem</h2>
                     <Input type='text' placeholder='Imagem' name='image' register={register} />
-                    {errors.image && <p className="error">{errors.image.message}</p>}
 
-                    <span>Conteudo</span>
+                    <h2>Conteudo</h2>
                     <textarea cols="50" rows="10" {...register("text")} />
-                    {errors.text && <p className="error">{errors.text.message}</p>}
 
-                    <button type="submit" className="button">Salvar</button>
-                    <span onClick={handleDeletePost} className="button">Deletar</span>
+                    <div>
+                        <span onClick={handleDeletePost} className="button">Deletar</span>
+                        <button type="submit" className="button">Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>

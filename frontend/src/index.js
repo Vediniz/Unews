@@ -33,16 +33,16 @@ const router = createBrowserRouter([
         path: '/news/edit/:id',
         element: <EditNews />
       },
+      {
+        path: '/auth',
+        element: <Authentication />,
+      },
+      {
+        path: '/perfil',
+        element: <Perfil />
+      }
     ]
   },
-  {
-    path: '/auth',
-    element: <Authentication />,
-  },
-  {
-    path: '/perfil',
-    element: <Perfil />
-  }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,0 +1,35 @@
+.create-news {
+    width: 100%;
+
+    form {
+        width: 100%;
+
+        button {
+            margin: 1.5rem 0;
+        }
+        
+        input {
+            width: 30%;
+            margin-bottom: 1.5rem;
+        }
+
+        textarea {
+            width: 30%;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            width: 30%;
+            text-align: center;
+
+            span {
+                background-color: transparent;
+                border: 2px solid red;
+                color: red;
+                font-weight: 600;
+                margin: 1.5rem 0;
+            }
+        }
+    }
+}
