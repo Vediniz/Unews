@@ -211,10 +211,12 @@ body {
   z-index: 1000;
   width: 80%;
   max-width: 600px;
+  max-height: 80%;
   background-color: #FFF;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: auto;
 }
 .modal-overlay .content-newsModal .content-newsImg {
   display: flex;
@@ -239,7 +241,7 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
-.modal-overlay .content-newsModal header p {
+.modal-overlay .content-newsModal p {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -371,27 +373,77 @@ body {
 }
 .create-news form {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-.create-news form button {
-  margin: 1.5rem 0;
+.create-news form h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
-.create-news form input {
-  width: 30%;
-  margin-bottom: 1.5rem;
+.create-news form .container-textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.create-news form textarea {
-  width: 30%;
+.create-news form .container-textarea textarea {
+  margin-bottom: 1rem;
 }
-.create-news form div {
+.create-news form .container-textarea div {
   display: flex;
   justify-content: space-between;
   width: 30%;
   text-align: center;
 }
-.create-news form div span {
+.create-news form .container-textarea div span {
   background-color: transparent;
   border: 2px solid red;
   color: red;
   font-weight: 600;
-  margin: 1.5rem 0;
+}
+.create-news form .container-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.create-news form .container-input input {
+  width: 70%;
+}
+.create-news form .container-input .checkbox-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0 0.5rem;
+  margin-top: 1rem;
+}
+.create-news form .container-input .checkbox-filters div {
+  border: 1px solid rgb(0, 212, 212);
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.create-news form .container-input .checkbox-filters div input[type=checkbox] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+  width: auto;
+}
+.create-news form .container-input .checkbox-filters div input[type=checkbox]:checked + label {
+  background-color: rgb(0, 212, 212);
+  color: white;
+}
+.create-news form .container-input .checkbox-filters div label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

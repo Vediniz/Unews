@@ -25,7 +25,7 @@ const NewsSchema = new mongoose.Schema({
     filters: [
         {
             type: String,
-            enum: ["Alunos","Analise e Desenvolvimento de Sistemas", "Segurança da Informação", "Design de Moda", "Moda e Textil", "Logistica", "Gestão de Eemppresas", "Jogos Digitais", "TI", "Modas", "IMPORTANTES"],
+            enum: ["Alunos","Analise e Desenvolvimento de Sistemas", "Segurança da Informação", "Design de Moda", "Moda e Textil", "Logistica", "Gestão de Empresas", "Jogos Digitais", "TI", "Modas", "IMPORTANTES"],
         },
     ],
 })

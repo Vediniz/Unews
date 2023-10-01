@@ -54,19 +54,70 @@ export default function EditNews() {
         <div>
             <div className="create-news">
                 <form onSubmit={handleSubmit(handleChangePost)}>
+                    <div className="container-input">
+                        <h2>Titulo</h2>
+                        <Input type='text' placeholder='Titulo' name='title' register={register} />
 
-                    <h2>Titulo</h2>
-                    <Input type='text' placeholder='Titulo' name='title' register={register} />
+                        <h2>Imagem</h2>
+                        <Input type='text' placeholder='Imagem' name='image' register={register} />
 
-                    <h2>Imagem</h2>
-                    <Input type='text' placeholder='Imagem' name='image' register={register} />
+                        <h2>Filtros</h2>
+                        
+                        <div className="checkbox-filters">
+                            <div>
+                                <Input id='Alunos' type='checkbox' name='Alunos' register={register} />
+                                <label htmlFor="Alunos">Alunos</label>
+                            </div>
+                            <div>
+                                <Input id="Segurança da Informação" type='checkbox' name='Segurança da Informação' register={register} />
+                                <label htmlFor="Segurança da Informação">Segurança da Informação</label>
+                            </div>
+                            <div>
+                                <Input id="TI" type='checkbox' name='TI' register={register} />
+                                <label htmlFor="TI">TI</label>
+                            </div>
+                            <div>
+                                <Input id="Design de Moda" type='checkbox' name='Design de Moda' register={register} />
+                                <label htmlFor="Design de Moda">Design de Moda</label>
+                            </div>
+                            <div>
+                                <Input id="Moda e Textil" type='checkbox' name='Moda e Textil' register={register} />
+                                <label htmlFor="Moda e Textil">Moda e Textil</label>
+                            </div>
+                            <div>
+                                <Input id="Logistica" type='checkbox' name='Logistica' register={register} />
+                                <label htmlFor="Logistica">Logistica</label>
+                            </div>
+                            <div>
+                                <Input id="Gestão de Empresas" type='checkbox' name='Gestão de Empresas' register={register} />
+                                <label htmlFor="Gestão de Empresas">Gestão de Empresas</label>
+                            </div>
+                            <div>
+                                <Input id="Jogos Digitais" type='checkbox' name='Jogos Digitais' register={register} />
+                                <label htmlFor="Jogos Digitais">Jogos Digitais</label>
+                            </div>
+                            <div>
+                                <Input id="Modas" type='checkbox' name='Modas' register={register} />
+                                <label htmlFor="Modas">Modas</label>
+                            </div>
+                            <div>
+                                <Input id="IMPORTANTES" type='checkbox' name='IMPORTANTES' register={register} />
+                                <label htmlFor="IMPORTANTES">IMPORTANTES</label>
+                            </div>
+                            <div>
+                                <Input id="Analise e Desenvolvimento de Sistemas" type='checkbox' name='Analise e Desenvolvimento de Sistemas' register={register} />
+                                <label htmlFor="Analise e Desenvolvimento de Sistemas">Analise e Desenvolvimento de Sistemas</label>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h2>Conteudo</h2>
-                    <textarea cols="50" rows="10" {...register("text")} />
-
-                    <div>
-                        <span onClick={handleDeletePost} className="button">Deletar</span>
-                        <button type="submit" className="button">Salvar</button>
+                    <div className="container-textarea">
+                        <h2>Conteudo</h2>
+                        <textarea cols="70" rows="15" {...register("text")} />
+                        <div>
+                            <span onClick={handleDeletePost} className="button">Deletar</span>
+                            <button type="submit" className="button">Salvar</button>
+                        </div>
                     </div>
                 </form>
             </div>
