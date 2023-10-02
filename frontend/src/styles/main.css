@@ -156,15 +156,24 @@ body {
 .header .content-menu .menu .menu-item:hover {
   color: #FEA82F;
 }
-.header .content-menu .menu #search {
+.header .content-menu .menu .search-input {
   background-color: #FFF;
   border: none;
   border-radius: 30px;
   padding: 0.25rem 0.8rem;
   overflow: hidden;
+  position: relative;
 }
-.header .content-menu .menu #search:focus {
+.header .content-menu .menu .search-input #search {
+  border: none;
+}
+.header .content-menu .menu .search-input #search:focus {
   outline: none;
+}
+.header .content-menu .menu .search-input .search-icon {
+  position: absolute;
+  right: 0.8rem;
+  cursor: pointer;
 }
 
 .footer {
@@ -229,7 +238,7 @@ body {
 .modal-overlay .content-newsModal header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 20px;
 }
 .modal-overlay .content-newsModal header h2 {
@@ -241,36 +250,31 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
-.modal-overlay .content-newsModal p {
+.modal-overlay .content-newsModal header .close-button:hover {
+  color: rgba(255, 0, 0, 0.473);
+}
+.modal-overlay .content-newsModal .texts {
+  text-align: justify;
+}
+.modal-overlay .content-newsModal .texts p {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  margin-top: 0.5rem;
 }
 
 .container-search {
-  padding-top: 1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.container-search img {
-  width: 50%;
-}
-.container-search .search-news {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin: 1rem auto;
-  width: 90%;
-}
-.container-search span {
-  display: flex;
-  align-items: center;
+  grid-gap: 1rem;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  width: 100%;
+  align-items: center;
+}
+@media (max-width: 999px) {
+  .container-search {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .container-auth {

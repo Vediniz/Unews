@@ -11,10 +11,19 @@ export default function News() {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm({
         resolver: zodResolver(newsSchema),
     });
+
+    const updateFilters = () => {
+        const selectedFilters = Array.from(document.querySelectorAll('input[type^="checkbox"]'))
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.name);
+
+        setValue("filters", selectedFilters.length > 0 ? selectedFilters : []);
+    };
 
     async function handleCreatePost(data) {
         try {
@@ -29,21 +38,7 @@ export default function News() {
     return (
         <div className="create-news">
             <form onSubmit={handleSubmit(handleCreatePost)}>
-
-                {/* <h2>Titulo</h2>
-                <Input type='text' placeholder='Titulo' name='title' register={register} />
-                    {errors.title && <p className="error">{errors.title.message}</p>}
-
-                <h2>Imagem</h2>
-                <Input type='text' placeholder='Imagem' name='image' register={register} />
-                    {errors.image && <p className="error">{errors.image.message}</p>}
-
-                <h2>Conteudo</h2>
-                <textarea cols="50" rows="10" {...register("text")}></textarea>             
-                    {errors.text && <p className="error">{errors.text.message}</p>}
-
-                <button type="submit" className="button">Salvar</button> */}
-
+                <Input type='hidden' placeholder='' name='filters' register={register} />
                 <div className="container-input">
                     <h2>Titulo</h2>
                     <Input type='text' placeholder='Titulo' name='title' register={register} />
@@ -57,47 +52,47 @@ export default function News() {
 
                     <div className="checkbox-filters">
                         <div>
-                            <Input id='Alunos' type='checkbox' name='Alunos' register={register} />
+                            <input id='Alunos' type='checkbox' name='Alunos' onChange={updateFilters} />
                             <label htmlFor="Alunos">Alunos</label>
                         </div>
                         <div>
-                            <Input id="Segurança da Informação" type='checkbox' name='Segurança da Informação' register={register} />
+                            <input id="Segurança da Informação" type='checkbox' name='Segurança da Informação' onChange={updateFilters} />
                             <label htmlFor="Segurança da Informação">Segurança da Informação</label>
                         </div>
                         <div>
-                            <Input id="TI" type='checkbox' name='TI' register={register} />
+                            <input id="TI" type='checkbox' name='TI' onChange={updateFilters} />
                             <label htmlFor="TI">TI</label>
                         </div>
                         <div>
-                            <Input id="Design de Moda" type='checkbox' name='Design de Moda' register={register} />
+                            <input id="Design de Moda" type='checkbox' name='Design de Moda' onChange={updateFilters} />
                             <label htmlFor="Design de Moda">Design de Moda</label>
                         </div>
                         <div>
-                            <Input id="Moda e Textil" type='checkbox' name='Moda e Textil' register={register} />
+                            <input id="Moda e Textil" type='checkbox' name='Moda e Textil' onChange={updateFilters} />
                             <label htmlFor="Moda e Textil">Moda e Textil</label>
                         </div>
                         <div>
-                            <Input id="Logistica" type='checkbox' name='Logistica' register={register} />
+                            <input id="Logistica" type='checkbox' name='Logistica' onChange={updateFilters} />
                             <label htmlFor="Logistica">Logistica</label>
                         </div>
                         <div>
-                            <Input id="Gestão de Empresas" type='checkbox' name='Gestão de Empresas' register={register} />
+                            <input id="Gestão de Empresas" type='checkbox' name='Gestão de Empresas' onChange={updateFilters} />
                             <label htmlFor="Gestão de Empresas">Gestão de Empresas</label>
                         </div>
                         <div>
-                            <Input id="Jogos Digitais" type='checkbox' name='Jogos Digitais' register={register} />
+                            <input id="Jogos Digitais" type='checkbox' name='Jogos Digitais' onChange={updateFilters} />
                             <label htmlFor="Jogos Digitais">Jogos Digitais</label>
                         </div>
                         <div>
-                            <Input id="Modas" type='checkbox' name='Modas' register={register} />
+                            <input id="Modas" type='checkbox' name='Modas' onChange={updateFilters} />
                             <label htmlFor="Modas">Modas</label>
                         </div>
                         <div>
-                            <Input id="IMPORTANTES" type='checkbox' name='IMPORTANTES' register={register} />
+                            <input id="IMPORTANTES" type='checkbox' name='IMPORTANTES' onChange={updateFilters} />
                             <label htmlFor="IMPORTANTES">IMPORTANTES</label>
                         </div>
                         <div>
-                            <Input id="Analise e Desenvolvimento de Sistemas" type='checkbox' name='Analise e Desenvolvimento de Sistemas' register={register} />
+                            <input id="Analise e Desenvolvimento de Sistemas" type='checkbox' name='Analise e Desenvolvimento de Sistemas' onChange={updateFilters} />
                             <label htmlFor="Analise e Desenvolvimento de Sistemas">Analise e Desenvolvimento de Sistemas</label>
                         </div>
                     </div>

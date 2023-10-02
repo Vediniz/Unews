@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import { faSearch } from "@fortawesome/free-solid-svg-icons"; 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,7 +20,7 @@ export default function Header() {
     })
 
     const navigate = useNavigate()
-    const {user, setUser} = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
 
     function onSearch(data) {
         const { title } = data
@@ -32,16 +34,16 @@ export default function Header() {
         navigate('/')
     }
 
-    
+
     const token = Cookies.get('token');
     useEffect(() => {
         if (token) {
             findUserLogged();
-        }else{
+        } else {
             setUser(undefined)
         }
     }, [token]);
-    
+
     async function findUserLogged() {
         try {
             const response = await userLogged()
@@ -62,7 +64,12 @@ export default function Header() {
                 <div className="content-menu">
                     <div className="menu">
                         <form onSubmit={handleSubmit(onSearch)}>
-                            <input {...register("title")} type="text" id="search" placeholder={errors.title ? errors.title.message : 'Pesquisar...'} />
+                            <div className="search-input">
+                                <input {...register("title")} type="text" id="search" placeholder={errors.title ? errors.title.message : 'Pesquisar...'} />
+                                <span className="search-icon" onClick={handleSubmit(onSearch)}>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </span>
+                            </div>
                         </form>
                         {user && (
                             <>
@@ -76,7 +83,7 @@ export default function Header() {
                             <h1>{user.name}</h1>
                             <button className="button" onClick={signout}>Sair</button>
                         </div>
-                    ):(
+                    ) : (
                         <Link to='/auth'>
                             <button className="button">Entrar</button>
                         </Link>
