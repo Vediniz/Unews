@@ -8,6 +8,12 @@
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 1100px) {
+            flex-direction: column;
+            gap: 1rem;
+            padding-bottom: 2rem;
+        }
+
         h2 {
             margin-top: 1rem;
             margin-bottom: .5rem;
@@ -21,6 +27,10 @@
 
             textarea {
                 margin-bottom: 1rem;
+
+                @media (max-width: 750px) {
+                    width: 80%;
+                }
             }
 
             div {
@@ -28,6 +38,10 @@
                 justify-content: space-between;
                 width: 30%;
                 text-align: center;
+
+                @media (max-width: 750px) {
+                    width: 50%;
+                }
 
                 span {
                     background-color: transparent;
@@ -55,6 +69,11 @@
                 gap: .8rem;
                 margin: 0 0.5rem;
                 margin-top: 1rem;
+                width: 80%;
+
+                // @media (max-width: 750px) {
+                //     width: 80%;
+                // }
 
                 div {
                     border: 1px solid rgb(0, 212, 212);

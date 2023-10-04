@@ -38,11 +38,13 @@ body {
   grid-gap: 1rem;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2rem;
 }
 @media (max-width: 999px) {
   .home .body {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -66,7 +68,11 @@ body {
   font-size: 1.2rem;
   height: 33.3%;
 }
-@media (max-width: 500px) {
+.card .card-body .card-title:hover {
+  cursor: pointer;
+  color: #FEA82F;
+}
+@media (max-width: 1200px) {
   .card .card-body .card-title {
     font-size: 1rem;
   }
@@ -295,6 +301,17 @@ body {
   font-weight: 700;
   margin-bottom: 1rem;
 }
+@media (max-width: 1000px) {
+  .container-auth .cardSign {
+    width: 50%;
+  }
+}
+@media (max-width: 750px) {
+  .container-auth .cardSign {
+    width: 90%;
+    padding: 0;
+  }
+}
 .container-auth form {
   display: flex;
   flex-direction: column;
@@ -382,6 +399,13 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 1100px) {
+  .create-news form {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 2rem;
+  }
+}
 .create-news form h2 {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -395,11 +419,21 @@ body {
 .create-news form .container-textarea textarea {
   margin-bottom: 1rem;
 }
+@media (max-width: 750px) {
+  .create-news form .container-textarea textarea {
+    width: 80%;
+  }
+}
 .create-news form .container-textarea div {
   display: flex;
   justify-content: space-between;
   width: 30%;
   text-align: center;
+}
+@media (max-width: 750px) {
+  .create-news form .container-textarea div {
+    width: 50%;
+  }
 }
 .create-news form .container-textarea div span {
   background-color: transparent;
@@ -423,6 +457,7 @@ body {
   gap: 0.8rem;
   margin: 0 0.5rem;
   margin-top: 1rem;
+  width: 80%;
 }
 .create-news form .container-input .checkbox-filters div {
   border: 1px solid rgb(0, 212, 212);
