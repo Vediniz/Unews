@@ -105,7 +105,7 @@ const find_by_id = async (req, res) => {
                 image: news.image,
                 name: news.user.name,
                 username: news.user.username,
-                userAvatar: news.user.avatar,
+                filters: news.filters,
             }
         })
     } catch (err) { res.status(500).json({ message: err.message }) }

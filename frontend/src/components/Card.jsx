@@ -16,7 +16,7 @@ export default function Card(props) {
         <div className="card">
             <img src={props.banner} alt="Imagem da noticia" />
             <div className="card-body">
-                <div className="card-title">{props.title}</div>
+                <div className="card-title" onClick={props.onClick}>{props.title}</div>
 
                 <div className="card-text">
                     <TextLimit text={props.text} limit={100} />

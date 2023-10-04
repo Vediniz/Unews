@@ -38,11 +38,13 @@ body {
   grid-gap: 1rem;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2rem;
 }
 @media (max-width: 999px) {
   .home .body {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -66,7 +68,11 @@ body {
   font-size: 1.2rem;
   height: 33.3%;
 }
-@media (max-width: 500px) {
+.card .card-body .card-title:hover {
+  cursor: pointer;
+  color: #FEA82F;
+}
+@media (max-width: 1200px) {
   .card .card-body .card-title {
     font-size: 1rem;
   }
@@ -156,15 +162,24 @@ body {
 .header .content-menu .menu .menu-item:hover {
   color: #FEA82F;
 }
-.header .content-menu .menu #search {
+.header .content-menu .menu .search-input {
   background-color: #FFF;
   border: none;
   border-radius: 30px;
   padding: 0.25rem 0.8rem;
   overflow: hidden;
+  position: relative;
 }
-.header .content-menu .menu #search:focus {
+.header .content-menu .menu .search-input #search {
+  border: none;
+}
+.header .content-menu .menu .search-input #search:focus {
   outline: none;
+}
+.header .content-menu .menu .search-input .search-icon {
+  position: absolute;
+  right: 0.8rem;
+  cursor: pointer;
 }
 
 .footer {
@@ -211,10 +226,12 @@ body {
   z-index: 1000;
   width: 80%;
   max-width: 600px;
+  max-height: 80%;
   background-color: #FFF;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: auto;
 }
 .modal-overlay .content-newsModal .content-newsImg {
   display: flex;
@@ -227,7 +244,7 @@ body {
 .modal-overlay .content-newsModal header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 20px;
 }
 .modal-overlay .content-newsModal header h2 {
@@ -239,36 +256,31 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
-.modal-overlay .content-newsModal header p {
+.modal-overlay .content-newsModal header .close-button:hover {
+  color: rgba(255, 0, 0, 0.473);
+}
+.modal-overlay .content-newsModal .texts {
+  text-align: justify;
+}
+.modal-overlay .content-newsModal .texts p {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  margin-top: 0.5rem;
 }
 
 .container-search {
-  padding-top: 1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.container-search img {
-  width: 50%;
-}
-.container-search .search-news {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin: 1rem auto;
-  width: 90%;
-}
-.container-search span {
-  display: flex;
-  align-items: center;
+  grid-gap: 1rem;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  width: 100%;
+  align-items: center;
+}
+@media (max-width: 999px) {
+  .container-search {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .container-auth {
@@ -288,6 +300,17 @@ body {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+@media (max-width: 1000px) {
+  .container-auth .cardSign {
+    width: 50%;
+  }
+}
+@media (max-width: 750px) {
+  .container-auth .cardSign {
+    width: 90%;
+    padding: 0;
+  }
 }
 .container-auth form {
   display: flex;
@@ -371,27 +394,95 @@ body {
 }
 .create-news form {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-.create-news form button {
-  margin: 1.5rem 0;
+@media (max-width: 1100px) {
+  .create-news form {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 2rem;
+  }
 }
-.create-news form input {
-  width: 30%;
-  margin-bottom: 1.5rem;
+.create-news form h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
-.create-news form textarea {
-  width: 30%;
+.create-news form .container-textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.create-news form div {
+.create-news form .container-textarea textarea {
+  margin-bottom: 1rem;
+}
+@media (max-width: 750px) {
+  .create-news form .container-textarea textarea {
+    width: 80%;
+  }
+}
+.create-news form .container-textarea div {
   display: flex;
   justify-content: space-between;
   width: 30%;
   text-align: center;
 }
-.create-news form div span {
+@media (max-width: 750px) {
+  .create-news form .container-textarea div {
+    width: 50%;
+  }
+}
+.create-news form .container-textarea div span {
   background-color: transparent;
   border: 2px solid red;
   color: red;
   font-weight: 600;
-  margin: 1.5rem 0;
+}
+.create-news form .container-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.create-news form .container-input input {
+  width: 70%;
+}
+.create-news form .container-input .checkbox-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0 0.5rem;
+  margin-top: 1rem;
+  width: 80%;
+}
+.create-news form .container-input .checkbox-filters div {
+  border: 1px solid rgb(0, 212, 212);
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.create-news form .container-input .checkbox-filters div input[type=checkbox] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+  width: auto;
+}
+.create-news form .container-input .checkbox-filters div input[type=checkbox]:checked + label {
+  background-color: rgb(0, 212, 212);
+  color: white;
+}
+.create-news form .container-input .checkbox-filters div label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

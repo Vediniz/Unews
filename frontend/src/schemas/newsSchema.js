@@ -10,5 +10,6 @@ export const newsSchema = z.object({
     image: z
     .string()
     .nonempty({ message: "Campo obrigatório" }),
+    filters: z.any(),
 })
     

@@ -22,6 +22,15 @@ export function getPostById(id) {
     return response
 }
 
+export function getPostByFilter(filter) {
+    const response = axios.get(`${baseUrl}/news/filter?${filter}`, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+        }
+    })
+    return response
+}
+
 export function createPost(data) {
     const response = axios.post(`${baseUrl}/news/`, data, 
     {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from '../components/Card';
-import NewsModal from "../components/modals/NewsModal";
+import NewsModal from "../components/NewsModal";
 import { getAllPosts } from "../services/postServices";
 
 export default function Body() {
