@@ -32,7 +32,7 @@ const find_all = async (req, res) => {
         offset = Number(offset)
 
         if (!limit) {
-            limit = 5
+            limit = 6
         }
         if (!offset) {
             offset = 0

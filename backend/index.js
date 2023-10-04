@@ -24,16 +24,14 @@ app.use(express.json())
 // })
 
 const corsOptions = {
-    origin: 'http://localhost:3000', // Substitua pelo endereço do seu aplicativo React.js
+    origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Isso permite que as credenciais (como cookies) sejam passadas na solicitação
+    credentials: true, 
     optionsSuccessStatus: 204,
 };
 
-// Aplicar o middleware CORS com as opções configuradas
 app.use(cors(corsOptions));
 
-// Para sair no console as requisições
 app.use((req, res, next) => {
     console.log(`Received ${req.method} request at ${req.url}`);
     next()

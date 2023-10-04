@@ -15,7 +15,7 @@ const search_title_service = (title) => News.find({
 }).sort({_id: -1}).populate("user")
 
 
-const update_service = (id, title, text, image) => News.findOneAndUpdate({_id: id}, {title, text, image}, {includeResultMetadata: true})
+const update_service = (id, title, text, image, filters) => News.findOneAndUpdate({_id: id}, {title, text, image, filters}, {includeResultMetadata: true})
 
 const erase_service = (id) => News.findOneAndDelete({_id: id})
 
