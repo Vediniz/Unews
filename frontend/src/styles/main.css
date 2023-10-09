@@ -109,6 +109,62 @@ body {
 
 .content-header {
   height: 4rem;
+  background-color: #E8F1F2;
+}
+.content-header .faBars {
+  display: none;
+  align-self: center;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  margin: 0 0.8rem;
+}
+.content-header .faBars:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1843137255);
+}
+@media (max-width: 768px) {
+  .content-header {
+    width: 100%;
+    height: auto;
+  }
+  .content-header .faBars {
+    display: block;
+  }
+  .content-header .header {
+    height: auto;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    position: relative;
+  }
+  .content-header .content-menu {
+    flex-direction: column;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    height: 20rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    background-color: #E8F1F2;
+    z-index: 9999;
+    box-shadow: 0px 22px 14px 1px rgba(0, 0, 0, 0.75);
+  }
+  .content-header .content-menu .menu {
+    flex-direction: column;
+    align-items: center !important;
+    height: 80%;
+  }
+  .content-header .content-menu .menu .menu-item {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+  .content-header .content-menu .logout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .content-header .content-menu .logout > * {
+    margin-bottom: 1rem;
+  }
 }
 
 .header {
@@ -120,12 +176,14 @@ body {
   height: 4rem;
   padding: 3rem 0;
   top: 0;
-  background-color: #E8F1F2;
 }
 .header .brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .header .brand .name {
   font-family: "Tulpen One";
@@ -331,6 +389,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 768px) {
+  #perfil {
+    width: 100%;
+  }
+  #perfil .perfil-modal {
+    width: 80%;
+  }
+  #perfil form {
+    width: 100% !important;
+  }
 }
 #perfil .button-back {
   position: fixed;

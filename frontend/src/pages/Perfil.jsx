@@ -15,6 +15,7 @@ export default function Perfil() {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
     } = useForm({
         resolver: zodResolver(signupSchema),
@@ -43,6 +44,8 @@ export default function Perfil() {
         try {
             const response = await userLogged()
             setUser(response.data);
+            setValue("name", response.data.name);
+            setValue("email", response.data.email);
         } catch (error) {
             console.log(error);
         }

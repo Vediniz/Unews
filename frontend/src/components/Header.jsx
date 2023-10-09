@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import { faSearch } from "@fortawesome/free-solid-svg-icons"; 
+import React, { useContext, useEffect, useState } from "react";
+import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Outlet, useNavigate, Link } from "react-router-dom";
+import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../schemas/searchSchema";
@@ -20,7 +20,19 @@ export default function Header() {
     })
 
     const navigate = useNavigate()
+    const [isVisible, setIsVisible] = useState(false);
     const { user, setUser } = useContext(UserContext)
+
+    const location = useLocation();
+
+    const closeMenuOnNavigation = () => {
+        setIsVisible(false); 
+    };
+
+    useEffect(() => {
+        closeMenuOnNavigation();
+    }, [location]);
+
 
     function onSearch(data) {
         const { title } = data
@@ -33,7 +45,6 @@ export default function Header() {
         setUser(undefined)
         navigate('/')
     }
-
 
     const token = Cookies.get('token');
     useEffect(() => {
@@ -53,20 +64,48 @@ export default function Header() {
         }
     }
 
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+    };
+
+    const checkWindowSize = () => {
+        if (window.innerWidth < 768) {
+            setIsVisible(false);
+        } else {
+            setIsVisible(true);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", checkWindowSize);
+        checkWindowSize();
+
+        return () => {
+            window.removeEventListener("resize", checkWindowSize);
+        };
+    }, []);
+
     return (
         <div className="content-header">
             <div className="header">
+                <div className="faBars" onClick={toggleVisibility}>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
                 <Link to='/' style={{ textDecoration: 'none' }}>
                     <div className="brand">
                         <div className="name">U<span>news</span></div>
                     </div>
                 </Link>
-                <div className="content-menu">
+                <div className="content-menu" 
+                style={{ 
+                    display: isVisible ? 'flex' : 'none', 
+                    height: !user && 'auto'
+                    }}>
                     <div className="menu">
                         <form onSubmit={handleSubmit(onSearch)}>
                             <div className="search-input">
                                 <input {...register("title")} type="text" id="search" placeholder={errors.title ? errors.title.message : 'Pesquisar...'} />
-                                <span className="search-icon" onClick={handleSubmit(onSearch)}>
+                                <span className="search-icon" onClick={onSearch}>
                                     <FontAwesomeIcon icon={faSearch} />
                                 </span>
                             </div>

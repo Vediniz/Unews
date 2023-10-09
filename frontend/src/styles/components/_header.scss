@@ -1,7 +1,77 @@
 @import '../base/variables';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Tulpen+One&display=swap');
 
-.content-header {height: 4rem;}
+.content-header {
+    height: 4rem;
+    background-color: $background;
+    // border: 1px solid #000;
+
+    .faBars {
+        display: none;
+        align-self: center;
+        border-radius: 10px;
+        padding: .5rem .8rem;
+        margin: 0 .8rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #0000002f;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+
+        .faBars {
+            display: block;
+        }
+
+        .header {
+            height: auto;
+            padding: .5rem 1rem;
+            width: 100%;
+            position: relative;
+        }
+
+        .content-menu {
+            flex-direction: column;
+            position: absolute;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            height: 20rem;
+            padding-bottom: 1rem;
+            width: 100%;
+            background-color: $background;
+            z-index: 9999;
+
+            -webkit-box-shadow: 0px 22px 14px 1px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 22px 14px 1px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 22px 14px 1px rgba(0, 0, 0, 0.75);
+
+            .menu {
+                flex-direction: column;
+                align-items: center !important;
+                height: 80%;
+
+                .menu-item {
+                    font-size: 1.2rem;
+                    margin-top: 1rem;
+                }
+            }
+
+            .logout {
+                flex-direction: column;
+                gap: 1rem;
+
+                &>* {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}
 
 .header {
     display: flex;
@@ -12,18 +82,19 @@
     height: 4rem;
     padding: 3rem 0;
     top: 0;
-    background-color: $background;
 
     .brand {
         display: flex;
         align-items: center;
         gap: .5rem;
+        user-select: none;
 
         .name {
             font-family: 'Tulpen One';
             font-size: 3rem;
             font-weight: 700;
             color: $primary;
+
             span {
                 font: inherit;
                 color: $secondary;
@@ -31,7 +102,7 @@
         }
     }
 
-    .content-menu{
+    .content-menu {
         display: flex;
         align-items: center;
         gap: .5rem;
@@ -39,8 +110,10 @@
         .logout {
             display: flex;
             gap: .8rem;
-            
-            h1 {align-self: center;}
+
+            h1 {
+                align-self: center;
+            }
         }
 
         .menu {
@@ -50,7 +123,7 @@
             // border: 1px solid $primary;
             border-radius: 30px;
             padding: .5rem 1rem;
-    
+
             .menu-item {
                 cursor: pointer;
 
@@ -58,7 +131,7 @@
                     color: $tertiary;
                 }
             }
-    
+
             .search-input {
                 background-color: $white;
                 border: none;
@@ -66,9 +139,10 @@
                 padding: .25rem .8rem;
                 overflow: hidden;
                 position: relative;
-    
+
                 #search {
                     border: none;
+
                     &:focus {
                         outline: none;
                     }
@@ -78,7 +152,7 @@
                     position: absolute;
                     right: .8rem;
                     cursor: pointer;
-                }    
+                }
             }
         }
     }

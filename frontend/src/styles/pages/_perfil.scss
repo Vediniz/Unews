@@ -3,6 +3,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    @media (max-width: 768px) {
+        width: 100%;
+
+        .perfil-modal {
+            width: 80%;
+        }
+        
+        form {
+            width: 100% !important;
+        }
+    }
 
     .button-back {
         position: fixed;
