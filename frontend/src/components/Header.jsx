@@ -26,7 +26,9 @@ export default function Header() {
     const location = useLocation();
 
     const closeMenuOnNavigation = () => {
-        setIsVisible(false); 
+        if (window.innerWidth < 768) {
+            setIsVisible(false);
+        }
     };
 
     useEffect(() => {
@@ -96,16 +98,16 @@ export default function Header() {
                         <div className="name">U<span>news</span></div>
                     </div>
                 </Link>
-                <div className="content-menu" 
-                style={{ 
-                    display: isVisible ? 'flex' : 'none', 
-                    height: !user && 'auto'
+                <div className="content-menu"
+                    style={{
+                        display: isVisible ? 'flex' : 'none',
+                        height: !user && 'auto'
                     }}>
                     <div className="menu">
                         <form onSubmit={handleSubmit(onSearch)}>
                             <div className="search-input">
                                 <input {...register("title")} type="text" id="search" placeholder={errors.title ? errors.title.message : 'Pesquisar...'} />
-                                <span className="search-icon" onClick={onSearch}>
+                                <span className="search-icon" onClick={handleSubmit(onSearch)}>
                                     <FontAwesomeIcon icon={faSearch} />
                                 </span>
                             </div>
