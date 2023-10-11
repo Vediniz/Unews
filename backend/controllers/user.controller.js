@@ -57,57 +57,57 @@ const find_by_id = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { id } = req.params;
-        const user = await userService.find_by_id_service(id);
+        const { id } = req.params
+        const user = await userService.find_by_id_service(id)
 
         if (!user || !user._id) {
-            throw new Error('Usuário não encontrado');
+            throw new Error('Usuário não encontrado')
         }
 
-        const { new_question, new_answer, name, username, email, password } = req.body;
+        const { new_question, new_answer, name, username, email, password } = req.body
 
         if (!name && !username && !email && !password && !new_question && !new_answer) {
-            return res.status(400).json({ message: 'Submit at least one field for update' });
+            return res.status(400).json({ message: 'Submit at least one field for update' })
         }
 
         if (password) {
-            const hashedPassword = await bcrypt.hash(password, 10);
-            await userService.update_service(id, { name, username, email, password: hashedPassword }, { new: true, runValidators: true });
+            const hashedPassword = await bcrypt.hash(password, 10)
+            await userService.update_service(id, { name, username, email, password: hashedPassword }, { new: true, runValidators: true })
         } else {
-            await userService.update_service(id, { name, username, email }, { new: true, runValidators: true });
+            await userService.update_service(id, { name, username, email }, { new: true, runValidators: true })
         }
 
         if (new_question && new_answer) {
-            const hashedAnswer = await bcrypt.hash(new_answer, 10);
-            const updatedUser = await userService.update_question_answer_service(id, new_question, hashedAnswer);
+            const hashedAnswer = await bcrypt.hash(new_answer, 10)
+            const updatedUser = await userService.update_question_answer_service(id, new_question, hashedAnswer)
 
             if (updatedUser) {
-                res.status(200).json({ message: 'User and recovery question/answer updated successfully' });
+                res.status(200).json({ message: 'User and recovery question/answer updated successfully' })
             } else {
-                throw new Error('Failed to update user and recovery question/answer');
+                throw new Error('Failed to update user and recovery question/answer')
             }
         } else if (new_question) {
-            const updatedUser = await userService.update_question_answer_service(id, new_question);
+            const updatedUser = await userService.update_question_answer_service(id, new_question)
 
             if (updatedUser) {
-                res.status(200).json({ message: 'User and recovery question updated successfully' });
+                res.status(200).json({ message: 'User and recovery question updated successfully' })
             } else {
-                throw new Error('Failed to update recovery question');
+                throw new Error('Failed to update recovery question')
             }
         } else if (new_answer) {
-            const hashedAnswer = await bcrypt.hash(new_answer, 10);
-            const updatedUser = await userService.update_question_answer_service(id, hashedAnswer);
+            const hashedAnswer = await bcrypt.hash(new_answer, 10)
+            const updatedUser = await userService.update_question_answer_service(id, hashedAnswer)
 
             if (updatedUser) {
-                res.status(200).json({ message: 'User and recovery answer updated successfully' });
+                res.status(200).json({ message: 'User and recovery answer updated successfully' })
             } else {
-                throw new Error('Failed to update recovery answer');
+                throw new Error('Failed to update recovery answer')
             }
         } else {
-            res.status(200).json({ message: 'User information updated successfully' });
+            res.status(200).json({ message: 'User information updated successfully' })
         }
     } catch (err) {
-        handle_error(res, err);
+        handle_error(res, err)
     }
 }
 
