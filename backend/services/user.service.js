@@ -7,9 +7,11 @@ const find_by_id_service = (id) => User.findById(id)
 
 const update_service = (id, updatedData, options) => User.findOneAndUpdate({ _id: id }, updatedData, options)
 
+const find_email_service = (email) => User.findOne(email)
 export default {
     create_service,
     find_all_service,
     find_by_id_service,
-    update_service
-};
+    update_service,
+    find_email_service
+}

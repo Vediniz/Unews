@@ -27,11 +27,17 @@ const UserSchema = new mongoose.Schema({
         required: true,
         select: false
     },
-    avatar: {
-        type: String
-    }
-});
-
+    recoveryQuestion: {
+        question: {
+          type: String,
+          required: true 
+        },
+        answer: {
+          type: String,
+          required: true 
+        }
+      }
+    })
 UserSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 10);
     next();
