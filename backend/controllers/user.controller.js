@@ -103,6 +103,22 @@ const find_by_token = async (req, res, token) => {
         res.status(401).json({ message: 'Token inválido: ' + error.message })
     }
 }
+const find_recovery_question = async (req, res) => {
+    try {
+        const { email } = req.body 
+        const user = await userService.find_email_service({email})
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        const recoveryQuestion = user.recoveryQuestion.question
+        res.status(200).json({ question: recoveryQuestion })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' })
+    }
+}
 
 const validate_answer = async (req, res) => {
     try {
@@ -145,5 +161,6 @@ export default {
     find_by_id,
     update,
     find_by_token,
-    validate_answer
+    validate_answer,
+    find_recovery_question
 }
