@@ -57,10 +57,16 @@ const find_by_id = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { name, username, email, password, avatar } = req.body
-        const { id, user } = req
+        const { id } = req.params
+        const user = await userService.find_by_id_service(id)
 
-        if (!name && !username && !email && !password && !avatar) {
+        if (!user || !user._id) {
+            throw new Error('Usuário não encontrado')
+        }
+
+        const { new_question, new_answer, name, username, email, password, avatar } = req.body
+
+        if (!name && !username && !email && !password && !avatar && !new_question && !new_answer) {
             return res.status(400).json({ message: 'Submit at least one field for update' })
         }
 
@@ -71,17 +77,22 @@ const update = async (req, res) => {
             await userService.update_service(id, { name, username, email, avatar }, { new: true, runValidators: true })
         }
 
-        res.json({ message: 'User successfully updated' })
+        if (new_question || new_answer) {
+            const hashedAnswer = await bcrypt.hash(new_answer, 10) 
+            const updatedUser = await userService.update_question_answer_service(id, new_question, hashedAnswer)
+            if (updatedUser) {
+                res.status(200).json({ message: 'User and recovery question/answer updated successfully' })
+            } else {
+                throw new Error('Failed to update recovery question/answer')
+            }
+        } else {
+            res.status(200).json({ message: 'User information updated successfully' })
+        }
     } catch (err) {
         handle_error(res, err)
     }
 }
 
-
-const handle_error = (res, err) => {
-    console.error(err.stack)
-    res.status(500).json({ message: 'Something went wrong' })
-}
 
 const find_by_token = async (req, res, token) => {
     try {
@@ -97,64 +108,65 @@ const find_by_token = async (req, res, token) => {
         if (!user || !user.id) {
             throw new Error('Usuário não encontrado')
         }
-
+        
         res.json(user)
     } catch (error) {
         res.status(401).json({ message: 'Token inválido: ' + error.message })
     }
 }
+
 const find_recovery_question = async (req, res) => {
     try {
         const { email } = req.body 
         const user = await userService.find_email_service({email})
-
+        
         if (!user) {
             return res.status(404).json({ message: 'User not found' })
         }
 
         const recoveryQuestion = user.recoveryQuestion.question
         res.status(200).json({ question: recoveryQuestion })
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' })
+    } catch (err) {
+        handle_error(res, err)
     }
 }
 
 const validate_answer = async (req, res) => {
-    try {
-        const { email, answer } = req.body
-        console.log("Email:", email)
-        console.log("Answer:", answer)
-
-        const user = await userService.find_email_service({ email })
-        console.log("User found:", user)
-
-        if (!user) {
-            console.log("User not found")
-            return res.status(404).json({ message: 'User not found' })
+        try {
+            const { email, answer } = req.body
+    
+            const user = await userService.find_email_service({email})
+    
+            if (!user) {
+                console.log("User not found")
+                return res.status(404).json({ message: 'User not found' })
+            }
+            const recovery_question = user.recoveryQuestion
+    
+            if (!recovery_question) {
+                return res.status(400).json({ message: 'Recovery question not set for this user' })
+            }
+    
+            const hashedAnswer = recovery_question.answer
+    
+            const isMatch = await bcrypt.compare(answer, hashedAnswer)
+    
+            if (!isMatch) {
+                return res.status(400).json({ message: 'Invalid answer' })
+            }
+    
+            console.log("Answer is valid")
+            const token = generate_token(user.id)
+            res.status(200).json({ token: token })
+        } catch (err) {
+            handle_error(res, err)
         }
-        // aqui eu preciso enviar a question pro frontend, tem como?
-        const recoveryQuestion = user.recoveryQuestion
-        console.log("Recovery Question:", recoveryQuestion)
-
-        if (!recoveryQuestion || recoveryQuestion.answer !== answer) {
-            console.log("Invalid answer")
-            return res.status(400).json({ message: 'Invalid answer' })
-        }
-
-        console.log("Answer is valid")
-        const token = generate_token(user.id)
-        res.status(200).json({ token: token })
-    } catch (err) {
-        console.error("Internal server error:", err)
-        res.status(500).json({ message: 'Internal server error' })
-    }
 }
 
-
-
-
-
+const handle_error = (res, err) => {
+    console.error(err.stack)
+    res.status(500).json({ message: 'Something went wrong' })
+}
 export default {
     create,
     find_all,
@@ -162,5 +174,5 @@ export default {
     update,
     find_by_token,
     validate_answer,
-    find_recovery_question
+    find_recovery_question,
 }

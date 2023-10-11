@@ -18,9 +18,9 @@ const port = process.env.PORT || 3000
 connectedDB()
 app.use(express.json())
 // app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Origin', '*')
 //     cors()
-//     next();
+//     next()
 // })
 
 const corsOptions = {
@@ -28,12 +28,12 @@ const corsOptions = {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, 
     optionsSuccessStatus: 204,
-};
+}
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions))
 
 app.use((req, res, next) => {
-    console.log(`Received ${req.method} request at ${req.url}`);
+    console.log(`Received ${req.method} request at ${req.url}`)
     next()
 })
 
@@ -44,10 +44,10 @@ app.use("/news", newsRoute)
 
 
 const notFound = (req, res, next) => {
-    res.status(404).json({ message: 'Route not found' });
-};
+    res.status(404).json({ message: 'Route not found' })
+}
 
-app.use(notFound);
+app.use(notFound)
 
 
 
