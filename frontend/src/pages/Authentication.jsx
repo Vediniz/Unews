@@ -2,7 +2,7 @@ import Input from "../components/Input"
 import Cookies from 'js-cookie'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { signinSchema } from "../schemas/signinSchema"
 import { signin } from "../services/userServices"
 
@@ -38,6 +38,7 @@ export default function Authentication() {
                     <Input type='password' placeholder='Senha' name='password' register={registerSignin}/>
                         {errorsSignin.password && <p className="error">{errorsSignin.password.message}</p>}
                     <button type="submit" className="button">Entrar</button>
+                    <Link to={'/auth/reset-password'} className="forget-password">Esqueceu a senha?</Link>
                 </form>
             </div>
         </div>

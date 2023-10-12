@@ -30,3 +30,13 @@ export function updateUser(id, data){
     });
     return response;
 }
+
+export function recoverQuestion(data){
+    const response = axios.post(`${baseUrl}/user/recover-question`, data)
+    return response;
+}
+
+export function validateAnswer(data){
+    const response = axios.post(`${baseUrl}/user/validate-answer`, data)
+    return response;
+}

@@ -12,6 +12,7 @@ import Perfil from './pages/Perfil';
 import Authentication from './pages/Authentication';
 import News from './pages/News';
 import EditNews from './pages/EditNews';
+import ForgetPassword from './pages/ForgetPassword';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: '/auth',
         element: <Authentication />,
+      },
+      {
+        path: '/auth/reset-password',
+        element: <ForgetPassword />,
       },
       {
         path: '/perfil',

@@ -1,4 +1,4 @@
-
+@import '../base/variables';
 
 .container-auth {
     display: flex;
@@ -32,7 +32,7 @@
     form {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         width: 100%;
 
         &>* {
@@ -42,6 +42,25 @@
         button {
             align-self: center;
             width: 100%;
+        }
+
+        .forget-password {
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+                color: $tertiary;
+            }   
+        }
+
+        p {
+            text-align: start;
+            font-size: 1.2rem;
+
+            span {
+                font-size: 1.3rem;
+                font-weight: bold;
+            }
         }
     }
 }

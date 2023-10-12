@@ -373,7 +373,7 @@ body {
 .container-auth form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
 }
 .container-auth form > * {
@@ -382,6 +382,21 @@ body {
 .container-auth form button {
   align-self: center;
   width: 100%;
+}
+.container-auth form .forget-password {
+  text-align: center;
+}
+.container-auth form .forget-password:hover {
+  cursor: pointer;
+  color: #FEA82F;
+}
+.container-auth form p {
+  text-align: start;
+  font-size: 1.2rem;
+}
+.container-auth form p span {
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 #perfil {
