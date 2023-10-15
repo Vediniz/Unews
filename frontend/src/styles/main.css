@@ -398,6 +398,9 @@ body {
   font-size: 1.3rem;
   font-weight: bold;
 }
+.container-auth form .error {
+  text-align: center;
+}
 
 #perfil {
   position: relative;
@@ -432,9 +435,29 @@ body {
   gap: 0.7rem;
   width: 70%;
 }
+#perfil .perfil-modal h1 {
+  text-align: center;
+  font-size: 1.2rem;
+}
+#perfil .perfil-modal .input-password {
+  position: relative;
+  width: 100%;
+}
+#perfil .perfil-modal .input-password input {
+  width: 100%;
+}
+#perfil .perfil-modal .input-password .eye-icon {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  cursor: pointer;
+}
 #perfil label {
   display: flex;
   flex-direction: column;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 #perfil .profile-info {
   display: flex;
@@ -455,6 +478,7 @@ body {
   justify-content: center;
   width: 50%;
   gap: 0.7rem;
+  padding-bottom: 3rem;
 }
 #perfil .buttons {
   display: flex;
@@ -569,4 +593,12 @@ body {
      -moz-user-select: none;
           user-select: none;
   cursor: pointer;
+}
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }/*# sourceMappingURL=main.css.map */

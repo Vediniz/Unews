@@ -5,14 +5,17 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Link, useNavigate } from "react-router-dom"
 import { signinSchema } from "../schemas/signinSchema"
 import { signin } from "../services/userServices"
+import { useState } from "react"
 
 export default function Authentication() {
     const navigate = useNavigate()
+    const [authorized, setAuthorized] = useState(true)
 
     const {
-        register: registerSignin,
-        handleSubmit: handleSubmitSignin,
-        formState: { errors: errorsSignin },
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
     } = useForm({
         resolver: zodResolver(signinSchema),
     });
@@ -24,7 +27,8 @@ export default function Authentication() {
             Cookies.set('token', response.data.token, { expires: 1 })
             navigate('/')
         } catch (error) {
-            console.log(error);
+            setAuthorized(false)
+            reset()
         }
     }
 
@@ -32,11 +36,12 @@ export default function Authentication() {
         <div className="container-auth">
             <div className="cardSign">
                 <h1>Login</h1>
-                <form onSubmit={handleSubmitSignin(inHandleSubmit)}>
-                    <Input type='email' placeholder='E-mail' name='email' register={registerSignin}/> 
-                        {errorsSignin.email && <p className="error">{errorsSignin.email.message}</p>}
-                    <Input type='password' placeholder='Senha' name='password' register={registerSignin}/>
-                        {errorsSignin.password && <p className="error">{errorsSignin.password.message}</p>}
+                <form onSubmit={handleSubmit(inHandleSubmit)}>
+                    <Input type='email' placeholder='E-mail' name='email' register={register}/> 
+                        {errors.email && <p className="error">{errors.email.message}</p>}
+                    <Input type='password' placeholder='Senha' name='password' register={register}/>
+                        {errors.password && <p className="error">{errors.password.message}</p>}
+                    {!authorized ? <p className="error">E-mail ou senha inválidos</p> : null}
                     <button type="submit" className="button">Entrar</button>
                     <Link to={'/auth/reset-password'} className="forget-password">Esqueceu a senha?</Link>
                 </form>

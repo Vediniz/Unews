@@ -33,11 +33,31 @@
         flex-direction: column;
         gap: .7rem;
         width: 70%;
+
+        h1 {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .input-password {
+            position: relative;
+            width: 100%;
+
+            input {width: 100%;}
+
+            .eye-icon {
+                position: absolute;
+                right: .8rem;
+                bottom: .8rem;
+                cursor: pointer;
+            }
+        }
     }
 
     label {
         display: flex;
         flex-direction: column;
+        user-select: none;
     }
 
     .profile-info {
@@ -62,6 +82,7 @@
         justify-content: center;
         width: 50%;
         gap: .7rem;
+        padding-bottom: 3rem;
     }
     
     .buttons {
