@@ -7,11 +7,15 @@ import Cookies from 'js-cookie';
 
 export default function ForgetPassword() {
     const navigate = useNavigate();
+    const [userFound, setUserFound] = useState(true);
+    const [correctAnswer, setCorrectAnswer] = useState(true);
     const [hasQuestion, setHasQuestion] = useState(false);
     const [question, setQuestion] = useState('');
     const {
         register,
         handleSubmit,
+        reset,
+        setValue,
     } = useForm({});
 
     async function searchQuestion(data) {
@@ -19,9 +23,10 @@ export default function ForgetPassword() {
             const response = await recoverQuestion(data);
             setQuestion(response.data.question);
             setHasQuestion(true);
-            console.log(response.data);
+            setUserFound(true);
         } catch (error) {
-            console.log(error);
+            setUserFound(false);
+            reset();
         }
     }
 
@@ -29,9 +34,10 @@ export default function ForgetPassword() {
         try {
             const response = await validateAnswer(data);
             Cookies.set('token', response.data.token, { expires: 1 })
-            navigate(`/perfil`)
+            navigate('/perfil')
         } catch (error) {
-            console.log(error);
+            setCorrectAnswer(false);
+            setValue('answer', '');
         }
     }
 
@@ -43,11 +49,13 @@ export default function ForgetPassword() {
                     <Input type="text" placeholder="E-mail" name="email" register={register}/>
                     {hasQuestion ? (
                         <>
-                            <p><span>Pergunta:</span> {question}</p>
+                            <p><span>Pergunta:</span> {question} </p>
                             <Input type="text" placeholder="Resposta" name="answer" register={register}/>
                         </>
                         )
                     : null}
+                    {!userFound ? <p className="error">Usuário não encontrado</p> : null}
+                    {!correctAnswer ? <p className="error">Resposta incorreta</p> : null}
                     <button type="submit" className="button">Enviar</button>
                 </form>
             </div>

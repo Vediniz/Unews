@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from '../components/Card';
 import NewsModal from "../components/NewsModal";
 import { getAllPosts } from "../services/postServices";
+import { useNavigate } from "react-router-dom";
 
 export default function Body() {
 
@@ -9,9 +10,15 @@ export default function Body() {
     const [selectedCard, setSelectedCard] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const navigate = useNavigate();
+
     async function findAllPosts() {
-        const response = await getAllPosts();
-        setNews(response.data.results)
+        try {
+            const response = await getAllPosts();
+            setNews(response.data.results)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
