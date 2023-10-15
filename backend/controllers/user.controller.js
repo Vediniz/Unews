@@ -65,13 +65,14 @@ const update = async (req, res) => {
         }
 
         const { new_question, new_answer, name, username, email, password } = req.body
-
-        if (!name && !username && !email && !password && !new_question && !new_answer) {
+        if (!name && !username && !email && !password  && !new_question && !new_answer) {
             return res.status(400).json({ message: 'Submit at least one field for update' })
         }
-
         if (password) {
-            const hashedPassword = await bcrypt.hash(password, 10)
+            if (password.length < 8) {
+                return res.status(400).json({ message: 'Password must have at least 8 characters' })
+            }
+            const hashedPassword = await bcrypt.hash(password, 10);
             await userService.update_service(id, { name, username, email, password: hashedPassword }, { new: true, runValidators: true })
         } else {
             await userService.update_service(id, { name, username, email }, { new: true, runValidators: true })
