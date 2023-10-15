@@ -499,6 +499,59 @@ body {
 
 .create-news {
   width: 100%;
+  position: relative;
+}
+.create-news .modal-delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  min-width: 25%;
+  height: 50%;
+  max-width: 600px;
+  max-height: 80%;
+  background-color: #FFF;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+@media (max-width: 750px) {
+  .create-news .modal-delete {
+    width: 60%;
+  }
+}
+.create-news .modal-delete h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  top: 2rem;
+  position: absolute;
+}
+.create-news .modal-delete p {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+.create-news .modal-delete div {
+  display: flex;
+  position: absolute;
+  bottom: 2rem;
+  gap: 0.5rem;
+}
+.create-news .modal-delete div .button {
+  align-self: center;
+}
+.create-news .btn-delete {
+  background-color: transparent;
+  border: 2px solid red;
+  color: red;
+  font-weight: 600;
 }
 .create-news form {
   width: 100%;
@@ -542,12 +595,6 @@ body {
   .create-news form .container-textarea div {
     width: 50%;
   }
-}
-.create-news form .container-textarea div span {
-  background-color: transparent;
-  border: 2px solid red;
-  color: red;
-  font-weight: 600;
 }
 .create-news form .container-input {
   display: flex;

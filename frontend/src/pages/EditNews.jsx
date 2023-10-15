@@ -7,12 +7,17 @@ import Input from "../components/Input"
 export default function EditNews() {
     const { id } = useParams()
     const [news, setNews] = useState({})
+    const [modalDelete, setModalDelete] = useState(false)
     const navigate = useNavigate()
     const {
         register,
         handleSubmit,
         setValue
     } = useForm({ defaultValues: news });
+
+    function toggleModalDelete() {
+        setModalDelete(!modalDelete)
+    }
 
     const updateFilters = () => {
         const selectedFilters = Array.from(document.querySelectorAll('input[type^="checkbox"]'))
@@ -49,6 +54,7 @@ export default function EditNews() {
     useEffect(() => {
         findById()
     }, [id, setValue])
+
 
     async function handleChangePost(data) {
         try {
@@ -134,11 +140,21 @@ export default function EditNews() {
                         <h2>Conteudo</h2>
                         <textarea cols="70" rows="15" {...register("text")} />
                         <div>
-                            <span onClick={handleDeletePost} className="button">Deletar</span>
+                            <span onClick={toggleModalDelete} className="button btn-delete">Deletar</span>
                             <button type="submit" className="button">Salvar</button>
                         </div>
                     </div>
 
+                    <div className="modal-overlay" onClick={toggleModalDelete} style={{display: modalDelete ? 'flex' : 'none'}}>
+                        <div className="modal-delete">
+                            <h1>Deletar Postagem</h1>
+                            <p>Tem certeza que deseja <br />deletar essa postagem?</p>
+                            <div>
+                                <span onClick={handleDeletePost} className="button btn-delete">Deletar</span>
+                                <span className="button" onClick={toggleModalDelete}>Cancelar</span>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
