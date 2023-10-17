@@ -15,9 +15,7 @@ export default function Search() {
         try {
             const newsApi = await searchPosts(title)
             setNews(newsApi.data.results)
-            console.log(news);
         } catch (error) {
-            console.log(error);
             setNews([])
         }
     }
@@ -36,22 +34,27 @@ export default function Search() {
         setIsModalOpen(false);
     };
 
+    const count = news.length
+
     return (
         <div className="home">
-            {news.length > 0 ?
-                <div className="body">
-                    {news.map((post) => (
-                        <Card
-                            key={post.id}
-                            id={post.id}
-                            title={post.title}
-                            text={post.text.join(' ')}
-                            banner={post.image}
-                            onClick={() => openModal(post)}
-                        />
-                    ))}
-                </div>
-                : <span>0 resultados encontrados</span>
+            {count > 0 ?
+                <>
+                    <h1>{count > 1 ? `${count} notícias encontradas` : `${count} notícia encontrada`}</h1>
+                    <div className="body">
+                        {news.map((post) => (
+                            <Card
+                                key={post.id}
+                                id={post.id}
+                                title={post.title}
+                                text={post.text.join(' ')}
+                                banner={post.image}
+                                onClick={() => openModal(post)}
+                            />
+                        ))}
+                    </div>
+                </>
+                : <span className="span-search">{count} resultados encontrados</span>
             }
 
             <NewsModal

@@ -47,6 +47,13 @@ body {
     align-items: center;
   }
 }
+.home .span-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  font-size: 2rem;
+}
 
 .card {
   display: flex;
@@ -398,7 +405,8 @@ body {
   font-size: 1.3rem;
   font-weight: bold;
 }
-.container-auth form .error {
+
+.error {
   text-align: center;
 }
 

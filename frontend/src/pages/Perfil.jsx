@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { updateUser, userLogged } from "../services/userServices";
-import { useForm } from "react-hook-form"
+import { set, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signupSchema } from "../schemas/signupSchema"
 import Input from "../components/Input"
@@ -13,6 +13,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 export default function Perfil() {
     const { user, setUser } = useContext(UserContext)
     const [showPassword, setShowPassword] = useState(false);
+    const [msg, setMsg] = useState(null);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -25,17 +26,18 @@ export default function Perfil() {
         setValue,
         formState: { errors },
     } = useForm({
-        resolver: zodResolver(signupSchema),
+        // resolver: zodResolver(signupSchema),
         defaultValues: user,
     });
 
     async function handleUpdateUser(data) {
-        // console.log(data);
         try {
             const id = user._id
             await updateUser(id, data)
+            setMsg("Usuário atualizado com sucesso!")
             reset()
         } catch (error) {
+            setMsg(error.response.data.message)
             console.log(error);
         }
     }
@@ -52,10 +54,11 @@ export default function Perfil() {
     async function findUserLogged() {
         try {
             const response = await userLogged()
+            console.log(response.data);
             setUser(response.data);
             setValue("name", response.data.name);
             setValue("email", response.data.email);
-            setValue("recoveryQuestion.question", response.data.recoveryQuestion.question);
+            setValue("new_question", response.data.recoveryQuestion.question);
         } catch (error) {
             console.log(error);
         }
@@ -64,20 +67,19 @@ export default function Perfil() {
     return (
         <div id="perfil">
             <form onSubmit={handleSubmit(handleUpdateUser)}>
-
                 <div className="perfil perfil-modal">
                     <h1>Login</h1>
+
+                    {msg && <p className="error">{msg}</p>}
 
                     <label htmlFor="name">
                         <span>Nome</span>
                         <Input register={register} type="text" name="name" />
-                        {errors.name && <p className="error">{errors.name.message}</p>}
                     </label>
 
                     <label htmlFor="email">
                         <span>E-mail</span>
                         <Input register={register} type="text" name="email" />
-                        {errors.email && <p className="error">{errors.email.message}</p>}
                     </label>
 
                     <label htmlFor="password">
@@ -88,25 +90,21 @@ export default function Perfil() {
                                 {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                             </span>
                         </div>
-                        {errors.password && <p className="error">{errors.password.message}</p>}
                     </label>
 
-                    <label htmlFor="confirmPassword">
+                    {/* <label htmlFor="confirmPassword">
                         <span>Confirmar Senha</span>
-                        <Input register={register} type={showPassword ? 'text' : 'password'} name="confirmPassword" />
-                        {errors.confirmPassword && <p className="error">{errors.confirmPassword.message}</p>}
-                    </label>
+                        // <Input register={register} type={showPassword ? 'password' : 'text'} name="confirmPassword" />
+                    </label> */}
 
-                    <label htmlFor="recoveryQuestion.question">
+                    <label htmlFor="new_question">
                         <span>Pergunta de Recuperação</span>
-                        <Input register={register} type="text" name="recoveryQuestion.question" />
-                        {errors['recoveryQuestion.question'] && <p className="error">{errors['recoveryQuestion.question'].message}</p>}
+                        <Input register={register} type="text" name="new_question" />
                     </label>
 
-                    <label htmlFor="recoveryQuestion.answer">
+                    <label htmlFor="new_answer">
                         <span>Resposta de Recuperação</span>
-                        <Input register={register} type="text" name="recoveryQuestion.answer" />
-                        {errors['recoveryQuestion.answer'] && <p className="error">{errors['recoveryQuestion.answer'].message}</p>}
+                        <Input register={register} type="text" name="new_answer" />
                     </label>
                 </div>
                 <button type='submit' className="button">Salvar</button>

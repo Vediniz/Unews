@@ -31,4 +31,12 @@
             align-items: center;
         }
     }
+
+    .span-search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75vh;
+        font-size: 2rem;
+    }
 }

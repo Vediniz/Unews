@@ -23,7 +23,7 @@ export function userLogged() {
 } 
 
 export function updateUser(id, data){
-    delete data.confirmPassword;
+    // delete data.confirmPassword;
     const response = axios.patch(`${baseUrl}/user/${id}`, data, {
         headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,
