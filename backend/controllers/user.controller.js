@@ -5,46 +5,46 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 
-const create = async (req, res) => {
-    try {
-        const { name, username, email, password, recoveryQuestion } = req.body
+// const create = async (req, res) => {
+//     try {
+//         const { name, username, email, password, recoveryQuestion } = req.body
 
-        if (!name || !username || !email || !password || !recoveryQuestion) {
-            return res.status(400).json({ message: 'Submit all fields for registration' })
-        }
+//         if (!name || !username || !email || !password || !recoveryQuestion) {
+//             return res.status(400).json({ message: 'Submit all fields for registration' })
+//         }
 
-        const user = await userService.create_service(req.body)
+//         const user = await userService.create_service(req.body)
 
-        if (!user) {
-            return res.status(404).json({ message: 'Error creating user' })
-        }
+//         if (!user) {
+//             return res.status(404).json({ message: 'Error creating user' })
+//         }
 
-        res.status(201).json({
-            message: 'User created successfully',
-            user: {
-                id: user._id,
-                name,
-                username,
-                email,
-            },
-        })
-    } catch (err) {
-        handle_error(res, err)
-    }
-}
+//         res.status(201).json({
+//             message: 'User created successfully',
+//             user: {
+//                 id: user._id,
+//                 name,
+//                 username,
+//                 email,
+//             },
+//         })
+//     } catch (err) {
+//         handle_error(res, err)
+//     }
+// }
 
 
-const find_all = async (req, res) => {
-    try {
-        const users = await userService.find_all_service()
-        if (users.length === 0) {
-            return res.status(400).json({ message: 'There are no registered users' })
-        }
-        res.json(users)
-    } catch (err) {
-        handle_error(res, err)
-    }
-}
+// const find_all = async (req, res) => {
+//     try {
+//         const users = await userService.find_all_service()
+//         if (users.length === 0) {
+//             return res.status(400).json({ message: 'There are no registered users' })
+//         }
+//         res.json(users)
+//     } catch (err) {
+//         handle_error(res, err)
+//     }
+// }
 
 const find_by_id = async (req, res) => {
     try {
@@ -189,8 +189,8 @@ const handle_error = (res, err) => {
     res.status(500).json({ message: 'Something went wrong' })
 }
 export default {
-    create,
-    find_all,
+    // create,
+    // find_all,
     find_by_id,
     update,
     find_by_token,

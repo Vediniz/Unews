@@ -3,9 +3,13 @@ import Cookies from 'js-cookie'
 
 const baseUrl = 'http://localhost:5000'
 
-export function getAllPosts() {
-    const response = axios.get(`${baseUrl}/news/`)
-    return response
+export const getAllPosts = async (limit, offset) => {
+    try {
+        const response = await axios.get(`${baseUrl}/news?limit=${limit}&offset=${offset}`)
+        return response.data
+    } catch (error) {
+        throw error
+    }
 }
 
 export function searchPosts(title) {
