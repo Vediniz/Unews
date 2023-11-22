@@ -13,17 +13,13 @@ export function searchPosts(title) {
     return response
 }
 
-export function getPostById(id) {
-    const response = axios.get(`${baseUrl}/news/${id}`, {
-        headers: {
-            Authorization: `Bearer ${Cookies.get("token")}`,
-        }
-    })
+export function getPostByFilter(filters) {
+    const response = axios.get(`${baseUrl}/news/filter?filters=${filters}`)
     return response
 }
 
-export function getPostByFilter(filter) {
-    const response = axios.get(`${baseUrl}/news/filter?${filter}`, {
+export function getPostById(id) {
+    const response = axios.get(`${baseUrl}/news/${id}`, {
         headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,
         }

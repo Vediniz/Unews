@@ -13,6 +13,7 @@ import Authentication from './pages/Authentication';
 import News from './pages/News';
 import EditNews from './pages/EditNews';
 import ForgetPassword from './pages/ForgetPassword';
+import Filters from './pages/Filters';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/search/:title',
         element: <Search />
+      },
+      {
+        path: '/filters/:filters',
+        element: <Filters />
       },
       {
         path: '/news',

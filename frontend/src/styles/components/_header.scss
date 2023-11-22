@@ -23,8 +23,21 @@
         width: 100%;
         height: auto;
 
+        #formFilter {
+            display: contents;
+
+            .filtersDiv {
+                display: flex;
+                margin-top: 10rem;
+            }
+        }
+
         .faBars {
             display: block;
+        }
+
+        .filtersDiv {
+            margin-left: -7rem;
         }
 
         .header {
@@ -80,6 +93,71 @@
     padding: 3rem 0;
     top: 0;
 
+    .filterBar {
+        align-self: center;
+        border-radius: 10px;
+        padding: .5rem .8rem;
+        margin: 0 .8rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #0000002f;
+        }
+    }
+
+    .formFilter{
+        display: block;
+    }
+
+    .filtersDiv {
+        z-index: 1;
+        position: absolute;
+        // display: flex;
+        margin-top: 36rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: .8rem;
+        width: 300px;
+        background-color: aliceblue;
+        padding: 1rem;
+        border-radius: 20px;
+        box-shadow: 0px 0px 13px 4px;
+
+        // @media (max-width: 750px) {
+        //     width: 80%;
+        // }
+
+        div {
+            border: 1px solid rgb(0, 212, 212);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+
+            input[type="checkbox"] {
+                position: absolute;
+                clip: rect(0, 0, 0, 0);
+                pointer-events: none;
+                width: auto;
+            }
+
+            input[type="checkbox"]:checked+label {
+                background-color: rgb(0, 212, 212);
+                color: white;
+            }
+
+            label {
+                display: block;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                padding: 0.5rem 1rem;
+                user-select: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+
     .brand {
         display: flex;
         align-items: center;
@@ -119,6 +197,22 @@
             gap: .5rem;
             border-radius: 30px;
             padding: .5rem 1rem;
+
+            form,
+            .filter {
+                display: flex;
+                align-items: center;
+                gap: .2rem;
+            }
+
+            .filter {
+                margin-left: .7rem;
+                user-select: none;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
 
             .menu-item {
                 cursor: pointer;
