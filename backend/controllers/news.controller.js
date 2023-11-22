@@ -207,7 +207,18 @@ const find_by_filter = async (req, res) => {
 
         const news = await filter_news_service(filtersArray)
 
-        res.json(news)
+        // res.json(news)
+        return res.json({
+            results: news.map(newsItem => ({
+                id: newsItem._id,
+                title: newsItem.title,
+                text: newsItem.text,
+                image: newsItem.image,
+                name: newsItem.user.name,
+                username: newsItem.user.username,
+                userAvatar: newsItem.user.avatar,
+            }))
+        })
     } catch (err) {
         console.error(err)
         res.status(500).json({ message: err.message })

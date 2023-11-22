@@ -40,7 +40,6 @@ export default function Header() {
 
     function onFilter(data) {
         const {filter} = data
-        console.log(`esta no header ${filter}`)
         navigate(`/filters/${filter}`)
     }
     // end filters

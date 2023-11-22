@@ -14,8 +14,7 @@ export default function Filters() {
     async function searchFilters() {
         try {
             const newsApi = await getPostByFilter(filters)
-            console.log(filters)
-            setNews(newsApi.data)
+            setNews(newsApi.data.results)
         } catch (error) {
             setNews([])
         }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from '../components/Card';
 import NewsModal from "../components/NewsModal";
 import { getAllPosts } from "../services/postServices";
-import { useNavigate } from "react-router-dom";
 
 export default function Body() {
     const [news, setNews] = useState([]);
@@ -10,8 +9,6 @@ export default function Body() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [offset, setOffset] = useState(0);
     const [response, setResponse] = useState(null);
-
-    const navigate = useNavigate();
 
     async function findAllPosts(limit, offset) {
         try {
