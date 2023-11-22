@@ -5,26 +5,27 @@ import { getAllPosts } from "../services/postServices";
 import { useNavigate } from "react-router-dom";
 
 export default function Body() {
-
     const [news, setNews] = useState([]);
     const [selectedCard, setSelectedCard] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [offset, setOffset] = useState(0);
+    const [response, setResponse] = useState(null);
 
     const navigate = useNavigate();
 
-    async function findAllPosts() {
+    async function findAllPosts(limit, offset) {
         try {
-            const response = await getAllPosts();
-            setNews(response.data.results)
+            const response = await getAllPosts(limit, offset);
+            setResponse(response);
+            setNews(response.results);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
     useEffect(() => {
-        findAllPosts();
-    }, [])
-
+        findAllPosts(6, offset); 
+    }, [offset]);  
 
     const openModal = (card) => {
         setSelectedCard(card);
@@ -34,6 +35,24 @@ export default function Body() {
     const closeModal = () => {
         setSelectedCard(null);
         setIsModalOpen(false);
+    };
+
+    const handleNextPage = () => {
+        if (response && response.nextUrl) {
+            const nextUrl = response.nextUrl;
+            const params = new URLSearchParams(nextUrl.split('?')[1]);
+            const nextOffset = Number(params.get('offset'));
+            setOffset(nextOffset); 
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (response && response.previousUrl) {
+            const previousUrl = response.previousUrl;
+            const params = new URLSearchParams(previousUrl.split('?')[1]);
+            const previousOffset = Number(params.get('offset'));
+            setOffset(previousOffset);  
+        }
     };
 
     return (
@@ -59,6 +78,15 @@ export default function Body() {
                 banner={selectedCard ? selectedCard.image : ''}
                 text={selectedCard ? selectedCard.text : ''}
             />
+
+            <div>
+                <button onClick={handlePreviousPage} disabled={!response || !response.previousUrl}>
+                    Página Anterior
+                </button>
+                <button onClick={handleNextPage} disabled={!response || !response.nextUrl}>
+                    Próxima Página
+                </button>
+            </div>
         </div>
-    )
+    );
 }
