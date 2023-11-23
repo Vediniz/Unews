@@ -77,7 +77,7 @@ export default function Header() {
 
     function onSearch(data) {
         const { title } = data
-        navigate(`/search/${title}`)
+        title !== '' ? navigate(`/search/${title}`) : navigate('/')
         reset()
     }
 
