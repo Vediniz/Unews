@@ -71,6 +71,7 @@ export default function Header() {
         closeMenuOnNavigation();
         if(isFilterVisible) toggleFilterVisible()
         document.querySelector("#filtersForm").reset();
+        setValue('filter', '')
     }, [location]);
 
 
