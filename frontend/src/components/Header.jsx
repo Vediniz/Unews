@@ -21,7 +21,7 @@ export default function Header() {
             .map(checkbox => checkbox.name);
 
         const filtersJoin = selectedFilters.join(',')
-        setValue("filter", selectedFilters.length > 0 ? filtersJoin : []);
+        setValue("filter", selectedFilters.length > 0 ? filtersJoin : '');
     };
 
     const filterNames = [
@@ -40,7 +40,7 @@ export default function Header() {
 
     function onFilter(data) {
         const {filter} = data
-        navigate(`/filters/${filter}`)
+        filter !== '' ? navigate(`/filters/${filter}`) : navigate('/')
     }
     // end filters
 
@@ -70,6 +70,7 @@ export default function Header() {
     useEffect(() => {
         closeMenuOnNavigation();
         if(isFilterVisible) toggleFilterVisible()
+        document.querySelector("#filtersForm").reset();
     }, [location]);
 
 
@@ -150,7 +151,7 @@ export default function Header() {
                                 </span>
                             </div>
                         </form>
-                        <form onSubmit={handleSubmit(onFilter)}>
+                        <form id="filtersForm" onSubmit={handleSubmit(onFilter)}>
                             <span className="filterBar" onClick={toggleFilterVisible}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
                             </span>
