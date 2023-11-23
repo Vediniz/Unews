@@ -77,10 +77,10 @@ export default function Body() {
             />
 
             <div>
-                <button onClick={handlePreviousPage} disabled={!response || !response.previousUrl}>
+                <button className="button btnFooter" onClick={handlePreviousPage} disabled={!response || !response.previousUrl}>
                     Página Anterior
                 </button>
-                <button onClick={handleNextPage} disabled={!response || !response.nextUrl}>
+                <button className="button btnFooter" onClick={handleNextPage} disabled={!response || !response.nextUrl}>
                     Próxima Página
                 </button>
             </div>

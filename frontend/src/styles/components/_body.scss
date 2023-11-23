@@ -40,3 +40,18 @@
         font-size: 2rem;
     }
 }
+
+.btnFooter {
+    width: 13% !important;
+    margin: 0 1rem 2rem 1rem;
+
+    @media (max-width: 1220px) {
+        width: 17% !important;
+    }
+    @media (max-width: 999px) {
+        width: 32% !important;
+    }
+    @media (max-width: 670px) {
+        width: 30% !important;
+    }
+}

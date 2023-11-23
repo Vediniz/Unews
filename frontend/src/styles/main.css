@@ -55,6 +55,26 @@ body {
   font-size: 2rem;
 }
 
+.btnFooter {
+  width: 13% !important;
+  margin: 0 1rem 2rem 1rem;
+}
+@media (max-width: 1220px) {
+  .btnFooter {
+    width: 17% !important;
+  }
+}
+@media (max-width: 999px) {
+  .btnFooter {
+    width: 32% !important;
+  }
+}
+@media (max-width: 670px) {
+  .btnFooter {
+    width: 30% !important;
+  }
+}
+
 .card {
   display: flex;
   width: 100%;
