@@ -19,6 +19,9 @@ ${bt_login}           //*[@class="cardSign"]//*[@class="button"][contains(text()
 
 ${bt_magnifying_glass}    //*[@class="svg-inline--fa fa-magnifying-glass "]
 
+${bt_filters}         //*[@class="filterBar"]
+${bt_apply_filter}    //*[@class="button"][contains(text(), 'Aplicar')]
+
 # -- textfield
 ${tf_email}           //*[@placeholder="E-mail"]
 ${tf_password}        //*[@placeholder="Senha"]
@@ -38,6 +41,13 @@ ${ph_search}          //*[@placeholder="Pesquisar..."]
 
 ${ph_news_overlay}    //*[@class="content-newsModal"]
 
+#--- Dropdown
+${dp_filter_item}    //*[@class="filtersDiv"]//*[@for="generic_filter1"]
+
+# --- 
+${modal_overlay}    //*[@class="modal-overlay"]
+${logo}             //*[@class="brand"]
+
 *** Keywords ***
 # --- Start tests ---
 Open Site Domain
@@ -52,6 +62,10 @@ Open Site Domain
     Open Browser    ${site_domain}    ${browser}    executable_path=${webdriver}
     Maximize Browser Window
 
+
+Check Url
+    [Arguments]    ${route}
+    Go To    ${LOCAL_HOST}/${route}
 
 # --- Finishing Test --- 
 Close Session
@@ -101,7 +115,7 @@ Admin Login
     Input Text    ${tf_email}            fatecam@gmail.com
     Input Text    ${tf_password}         admin
     Wait And Click Element               ${bt_login}
-    Wait Until Page Contains Element     //*[@class="logout"]//*[contains(text(), 'fatec am')]
+    Wait Until Page Contains Element     //*[@class="logout"]//*[contains(text(), 'Fatec AM')]
     
 Login on System
     [Arguments]    ${email}    ${password}    ${username}=false
